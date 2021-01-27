@@ -1,0 +1,40 @@
+
+{% load static %}
+    <div class="sidebar">
+      <div class="sidebar-wrapper">
+        
+        <div class="logo">
+          <img src="{% static 'assets/img/techstarslogo.png' %}" />
+        </div>
+
+        {% if user.is_authenticated %}
+        <ul class="nav">
+          <li>
+            <a href="/calendar.html">
+              <i class="tim-icons icon-calendar-60"></i>
+              <p>Calendar</p>
+            </a>
+          </li>
+          <li>
+            <a href="/page-user.html">
+              <i class="tim-icons icon-single-02"></i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li>
+            <a href="/list.html">
+              <i class="tim-icons icon-puzzle-10"></i>
+              <p>Startup List</p>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'logout' %}" >
+              <i class="tim-icons icon-user-run"></i>
+              <p>Logout</p>
+            </a>
+          </li>
+        </ul>
+        {% endif %}
+        
+      </div>
+    </div>
