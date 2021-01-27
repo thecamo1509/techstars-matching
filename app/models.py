@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 TIME_SLOTS_CHOICES = [
     ('AM', 'Morning'),
-    ('PM', 'Afternoon')
+    ('PM', 'Afternoon'),
+    ('undefined', 'Undefined'),
 ]
 
 DAY_CHOICES = [
@@ -13,6 +14,13 @@ DAY_CHOICES = [
     ('wednesday', 'Wednesday'),
     ('thursday', 'Thursday'),
     ('friday', 'Friday'),
+    ('undefined', 'Undefined'),
+]
+
+RESPONSES = [
+    ('want', 'Want'),
+    ('wont', 'Wont'),
+    ('willing', 'Willing'),
 ]
 
 class Startup(models.Model):
@@ -25,6 +33,7 @@ class Startup(models.Model):
 
 class Mentor(models.Model):
     name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200, blank=True)
     day = models.CharField(max_length=200, choices=DAY_CHOICES)
     timeSlot = models.CharField(max_length=50, choices=TIME_SLOTS_CHOICES)
     startup = models.ManyToManyField(Startup)
@@ -39,3 +48,5 @@ class Appointment(models.Model):
     time = models.TimeField()
     meet = models.URLField()
     status = models.CharField(max_length=50)
+    mentorResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
+    startupResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
