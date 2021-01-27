@@ -1,0 +1,108 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} UI Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Startups</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Company Name
+                </th>
+                <th>
+                  CEO
+                </th>
+                <th>
+                  Assigned Mentors
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for startup in startups %}
+              <tr>
+                <td>
+                  {{startup.companyName}}
+                </td>
+                <td>
+                  {{startup.name}}
+                </td>
+                <td>
+                  {% for mentor in startup.mentor_set.all.values %}
+                    {{mentor.name}},
+                  {% endfor %}
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Mentors</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Available Day
+                </th>
+                <th>
+                  Time Block
+                </th>
+                <th>
+                  Assigned Companies
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              {% for mentor in mentors %}
+                <td>
+                  {{mentor.name}}
+                </td>
+                <td>
+                  {{mentor.day}}
+                </td>
+                <td>
+                  {{mentor.timeSlot}}
+                </td>
+                <td>
+                  {% for startup in mentor.startup.all.values %}
+                    {{startup.companyName}}, 
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
