@@ -36,12 +36,11 @@ class User(AbstractUser):
 class Startup(models.Model):
     companyName = models.CharField(max_length=200)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
     whatwedo = models.CharField(max_length=400)
 
     def __str__(self):
         return self.companyName
-    
+
 
 class Mentor(models.Model):
     name = models.CharField(max_length=200)
@@ -50,7 +49,7 @@ class Mentor(models.Model):
     timeSlot = models.CharField(max_length=50, choices=TIME_SLOTS_CHOICES)
     startup = models.ManyToManyField(Startup)
     mentorPic = models.ImageField()
-    
+
     def __str__(self):
         return self.name
 

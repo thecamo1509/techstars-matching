@@ -4,8 +4,9 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from .models import Startup, Mentor, Appointment
-from .engine import scheduler
+from .engine import scheduler, loadmentors
 from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import FileSystemStorage
 from datetime import date, datetime
 
 CHECKRESULTS = True
@@ -43,14 +44,14 @@ def pages(request):
         load_template = request.path.split('/')[-1]
         html_template = loader.get_template( load_template )
         return HttpResponse(html_template.render(context, request))
-        
+
     except template.TemplateDoesNotExist:
 
         html_template = loader.get_template( 'error-404.html' )
         return HttpResponse(html_template.render(context, request))
 
     except:
-    
+
         html_template = loader.get_template( 'error-500.html' )
         return HttpResponse(html_template.render(context, request))
 
@@ -61,3 +62,27 @@ def appointmentview(request):
         scheduler.automaticBooking()
         print("Recibi el post")
         return redirect('/calendar.html')
+
+def uploadfile(request):
+    startups_list = Startup.objects.all()
+    mentors_list = Mentor.objects.all()
+    appointmentlist = Appointment.objects.all()
+    context = {
+        'startups': startups_list,
+        'mentors': mentors_list,
+        'appointments': appointmentlist,
+    }
+    if request.method == 'POST' and request.FILES.get('file', False):
+        myfile = request.FILES['file']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        mentors = Mentor.objects.all()
+        scheduler.automaticBooking()
+        uploaded_file_url = fs.url(filename)
+        print("Recibi el post")
+        loadmentors.loaddata(filename)
+
+        html_template = loader.get_template('upload2.html')
+        return HttpResponse(html_template.render(context, request))
+    html_template = loader.get_template('upload.html')
+    return HttpResponse(html_template.render(context, request))

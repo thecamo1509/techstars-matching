@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_celery_results',
-    'app', # Enable the inner app 
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +130,10 @@ STATICFILES_DIRS = (
 )
 #############################################################
 #############################################################
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 CELERY_BROKER_URL = 'redis://:paaef16ae7789049a1d0f424fdf148998256a90d69393a095adeeb37f73f11f8f@ec2-54-144-216-111.compute-1.amazonaws.com:6819'
 
