@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import json
-from ..models import Appointment, Startup, Mentor
+from ..models import Appointment, Startup, Mentor, User
 from datetime import date, datetime, timedelta
+import string
 import pandas as pd
 import numpy as np
 import time
@@ -35,7 +36,10 @@ def loaddata(filename):
     mentors = men_and_com[:i]
     companies = men_and_com[i+2:]
     for c in companies:
-        obj, created = Startup.objects.get_or_create(companyName=c)
+        c_lower = c.lower()
+        c_final = c_lower.translate({ord(c): None for c in string.whitespace})
+        c_user = User.objects.get(username=c_final)
+        obj, created = Startup.objects.get_or_create(companyName=c, user=c_user)
 
     com = Startup.objects.all()
     for i, m in enumerate(mentors):

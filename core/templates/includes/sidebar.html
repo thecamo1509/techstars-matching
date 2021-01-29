@@ -9,24 +9,34 @@
 
         {% if user.is_authenticated %}
         <ul class="nav">
+          {% if request.user.user_type == 3 %}
           <li>
             <a href="/calendar.html">
               <i class="tim-icons icon-calendar-60"></i>
               <p>Calendar</p>
             </a>
           </li>
+          {% endif %}
           <li>
             <a href="/page-user.html">
               <i class="tim-icons icon-single-02"></i>
               <p>User Profile</p>
             </a>
           </li>
+          {% if request.user.user_type == 3 %}
           <li>
             <a href="/list.html">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Startup List</p>
             </a>
           </li>
+          <li>
+            <a href="{% url 'upload' %}" >
+              <i class="tim-icons icon-upload"></i>
+              <p>Upload File</p>
+            </a>
+          </li>
+          {% endif %}
           <li>
             <a href="{% url 'logout' %}" >
               <i class="tim-icons icon-user-run"></i>
