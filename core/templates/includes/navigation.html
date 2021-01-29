@@ -30,7 +30,9 @@
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
-                    <img src="{% static 'assets/img/fotodeperfil.jpg' %}" alt="Profile Photo">
+                    {% if request.user.profile_pic.url != '' %}
+                      <img src="{{request.user.profile_pic.url}} " alt="Profile Photo">
+                    {% endif %}
                   </div>
                   <b class="caret d-none d-lg-block d-xl-block"></b>
                   <p class="d-lg-none">

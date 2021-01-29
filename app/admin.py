@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Appointment, Startup, Mentor
+from .models import Appointment, Startup, Mentor, User
 
 # Register your models here.
 admin.site.register(Startup)
+admin.site.register(User)
 
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = ('startup','mentor', 'date', 'time', 'status')

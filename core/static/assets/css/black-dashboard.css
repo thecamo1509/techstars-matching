@@ -6493,7 +6493,7 @@ a.close.disabled {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 999999;
   display: none;
   width: 100%;
   height: 100%;
@@ -6589,7 +6589,7 @@ a.close.disabled {
   z-index: 1040;
   width: 100vw;
   height: 100vh;
-  background-color: #222a42;
+  background-color: #fff;
 }
 
 .modal-backdrop.fade {
@@ -6597,7 +6597,7 @@ a.close.disabled {
 }
 
 .modal-backdrop.show {
-  opacity: 0.16;
+  opacity: 0.6;
 }
 
 .modal-header {
@@ -13161,8 +13161,8 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-primary.btn-simple {
-  color: #e14eca;
-  border-color: #e14eca;
+  color: #39C463;
+  border-color: #39C463;
   background: transparent;
 }
 
@@ -13170,15 +13170,15 @@ fieldset[disabled] .btn-primary.active {
 .btn-primary.btn-simple:focus,
 .btn-primary.btn-simple:active,
 .btn-primary.btn-simple:not(:disabled):not(.disabled):active {
-  color: #e14eca;
-  border-color: #e14eca;
+  color: #39C463;
+  border-color: #39C463;
   background-color: transparent !important;
   background-image: none !important;
   box-shadow: none;
 }
 
 .btn-primary.btn-simple.active {
-  border-color: #e14eca !important;
+  border-color: #39C463 !important;
 }
 
 .btn-primary.btn-simple.active:hover,
@@ -13187,11 +13187,12 @@ fieldset[disabled] .btn-primary.active {
 .btn-primary.btn-simple.active:not(:disabled):not(.disabled):active {
   color: #ffffff;
   border-color: #e14eca;
-  background-image: linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca) !important;
-  background-image: -webkit-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca) !important;
-  background-image: -o-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca) !important;
-  background-image: -moz-linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca) !important;
-  background-color: #ba54f5 !important;
+  background-color: #136c2e  !important;
+  background-image: linear-gradient(to bottom left, #4afd80, #136c2e , #4afd80) !important;
+  background-image: -webkit-linear-gradient(to bottom left, #4afd80, #136c2e , #4afd80) !important;
+  background-image: -o-linear-gradient(to bottom left, #4afd80, #136c2e , #4afd80) !important;
+  background-image: -moz-linear-gradient(to bottom left, #4afd80, #136c2e , #4afd80) !important;
+  color: #ffffff;
   box-shadow: none;
 }
 
@@ -14895,7 +14896,9 @@ img {
 }
 
 .modal-backdrop {
-  background: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  backdrop-filter: blur(100px);
+  background: rgb(255, 255, 255, 0.5);
 }
 
 .modal.modal-default .modal-content {
