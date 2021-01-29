@@ -25,11 +25,10 @@ RESPONSES = [
 
 class Startup(models.Model):
     companyName = models.CharField(max_length=200)
-    name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.companyName
-    
+
 
 class Mentor(models.Model):
     name = models.CharField(max_length=200)
@@ -37,7 +36,7 @@ class Mentor(models.Model):
     day = models.CharField(max_length=200, choices=DAY_CHOICES)
     timeSlot = models.CharField(max_length=50, choices=TIME_SLOTS_CHOICES)
     startup = models.ManyToManyField(Startup)
-    
+
     def __str__(self):
         return self.name
 
