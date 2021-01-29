@@ -10,3 +10,7 @@ python-decouple
 gunicorn
 whitenoise
 Pillow
+pandas
+django-celery-results
+redis
+django-celery-beat
