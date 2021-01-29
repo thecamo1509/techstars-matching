@@ -47,11 +47,15 @@ def loaddata(filename):
                 st.append(startups[0])
         day = "undefined"
         timeslot = "undefined"
+        email = "undefined"
         if type(source.iloc[i, 4]) == str:
             day = source.iloc[i, 4].split(" - ")[0]
             timeslot = source.iloc[i, 4].split(" - ")[1]
+        if type(source.iloc[i, 2]) == str:
+            email = source.iloc[i, 2]
         obj, _ = Mentor.objects.update_or_create(name=m,
                                                  defaults={'name': m,
+                                                           'email': email,
                                                            'day': day.lower(),
                                                            'timeSlot': timeslot
                                                            })
