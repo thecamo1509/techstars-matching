@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'  # Enable the inner app
+    'django_celery_results',
+    'app',
 ]
 
 MIDDLEWARE = [
@@ -96,13 +97,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'app.user'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Boise'
 
 USE_I18N = True
 
@@ -120,11 +122,28 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'core/static'),
 )
 #############################################################
 #############################################################
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+CELERY_BROKER_URL = 'redis://:paaef16ae7789049a1d0f424fdf148998256a90d69393a095adeeb37f73f11f8f@ec2-54-144-216-111.compute-1.amazonaws.com:6819'
+
+CELERY_ACCEPY_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'camilomoralesiml@gmail.com'
+EMAIL_HOST_PASSWORD = 'lzkrlfxgmdlywaiz'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'default from email'

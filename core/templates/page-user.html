@@ -11,7 +11,7 @@
   <div class="col-md-8">
     <div class="card">
       <div class="card-header">
-        <h5 class="title">Edit Profile</h5>
+        <h5 class="title">Company Profile</h5>
       </div>
       <div class="card-body">
         <form>
@@ -24,38 +24,16 @@
             </div>
             <div class="col-md-6 pl-md-1">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" value="{{ request.user.email }}">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 pr-md-1">
-              <div class="form-group">
-                <label>First Name</label>
-                <input type="text" class="form-control" value="Camilo Andrés">
-              </div>
-            </div>
-            <div class="col-md-6 pl-md-1">
-              <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" class="form-control" value="Morales">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 pr-md-1">
-              <div class="form-group">
-                <label>Country</label>
-                <input type="text" class="form-control" placeholder="Country" value="Colombia">
+                <label>Company Name</label>
+                <input type="text" class="form-control" value="{{currentstartup.companyName}}">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-8">
               <div class="form-group">
-                <label>About Me</label>
-                <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Dummy Text</textarea>
+                <label>What we do</label>
+                <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">{{currentstartup.whatwedo}}</textarea>
               </div>
             </div>
           </div>
@@ -76,9 +54,9 @@
             <div class="block block-three"></div>
             <div class="block block-four"></div>
             <a href="javascript:void(0)">
-              <img class="avatar" src="/static/assets/img/fotodeperfil.jpg" alt="...">
+              <img class="avatar" src="{{request.user.profile_pic.url}}" alt="...">
               <h5 class="title">
-                {{ request.user.username }}
+                {{currentstartup.companyName}}
               </h5>
             </a>
             <p class="description">
@@ -87,7 +65,7 @@
           </div>
         </p>
         <div class="card-description">
-          I am a full stack developer with critical thinking, I´m curious about technology and follow a philosophy, "Everything is possible as long as you imagine it"
+          {{currentstartup.whatwedo}}
         </div>
       </div>
       <div class="card-footer">

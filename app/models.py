@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 TIME_SLOTS_CHOICES = [
@@ -23,8 +23,20 @@ RESPONSES = [
     ('willing', 'Willing'),
 ]
 
+
+class User(AbstractUser):
+    USER_TYPE_CHOICES = (
+      (1, 'startup'),
+      (2, 'mentor'),
+      (3, 'staff'),
+  )
+    profile_pic = models.ImageField()
+    user_type = models.PositiveSmallIntegerField(default= 1, choices=USER_TYPE_CHOICES, null=True)
+
 class Startup(models.Model):
     companyName = models.CharField(max_length=200)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    whatwedo = models.CharField(max_length=400)
 
     def __str__(self):
         return self.companyName
@@ -36,6 +48,7 @@ class Mentor(models.Model):
     day = models.CharField(max_length=200, choices=DAY_CHOICES)
     timeSlot = models.CharField(max_length=50, choices=TIME_SLOTS_CHOICES)
     startup = models.ManyToManyField(Startup)
+    mentorPic = models.ImageField()
 
     def __str__(self):
         return self.name
@@ -45,7 +58,18 @@ class Appointment(models.Model):
     startup = models.ForeignKey(Startup, on_delete=models.CASCADE)
     date = models.DateField()
     time = models.TimeField()
+    endtime = models.TimeField()
     meet = models.URLField()
     status = models.CharField(max_length=50)
     mentorResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
     startupResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
+    mentorNotes = models.CharField(max_length=200, blank=True)
+    startupNotes = models.CharField(max_length=200, blank=True)
+
+class LeadMentor(models.Model):
+    mentor = models.OneToOneField(Mentor, on_delete=models.CASCADE)
+    startup = models.OneToOneField(Startup, on_delete=models.CASCADE)
+
+class AdHocMentor(models.Model):
+    mentor = models.OneToOneField(Mentor, on_delete=models.CASCADE)
+    startups = models.ManyToManyField(Startup)
