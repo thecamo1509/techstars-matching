@@ -6,6 +6,9 @@ from django import template
 from .models import Startup, Mentor, Appointment
 from .engine import scheduler
 from django.views.decorators.csrf import csrf_exempt
+from datetime import date, datetime
+
+CHECKRESULTS = True
 
 @login_required(login_url="/login/")
 def index(request):
@@ -17,10 +20,21 @@ def pages(request):
     startups_list = Startup.objects.all()
     mentors_list = Mentor.objects.all()
     appointmentlist = Appointment.objects.all()
+    currentstartup = Startup.objects.get(user=request.user)
+    mymentors = Mentor.objects.filter(startup=currentstartup)
+    todayappointments = Appointment.objects.filter(startup=currentstartup, date=str(date.today()))
+    completedappointments = Appointment.objects.filter(status="completed", startup=currentstartup)
+    currenttime = datetime.now().time()
     context = {
         'startups': startups_list,
         'mentors': mentors_list,
         'appointments': appointmentlist,
+        'currentstartup': currentstartup,
+        'mymentors': mymentors,
+        'todayappointments': todayappointments,
+        'currenttime': currenttime,
+        'checkresults': CHECKRESULTS,
+        "completedappointments": completedappointments,
     }
 
     # All resource paths end in .html.
