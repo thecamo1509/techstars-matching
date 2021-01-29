@@ -15,7 +15,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.conf.beat_schedule = {
     'every-15-seconds': {
-        'task': 'app.tasks.send_email_automation',
+        'task': 'app.tasks.send_massive_emails',
         'schedule': 15,
     },
 }

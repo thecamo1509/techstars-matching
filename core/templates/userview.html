@@ -1,13 +1,13 @@
 {% load static %}
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
-  <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="{% static 'assets/css/black-dashboard.css' %}" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
-
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="{% static 'assets/css/black-dashboard.css' %}" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
+  
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
 {% endblock stylesheets %}
 
@@ -57,7 +57,7 @@
         width: 120%;
         height: 100%;
         left: 11px;
-        bottom: 5px;
+        bottom: 50px;
         position: absolute;
         z-index: -1;
         transform: rotate(-13deg);
@@ -104,11 +104,6 @@
     }
     .profile-card-4 .icon-block a{
         text-decoration:none;
-    }
-    .profile-card-4 i:hover {
-      background-color: #39C463;
-      color: black;
-      text-decoration:none;
     }
 
     .profile-card-4 .boton{
@@ -177,20 +172,20 @@
 </style>
     <div style="padding: 2em">
         <div class="card text-center">
-            <h2 class="card-title mt-2">{{mentor.name}}</h2>
+            <h2 class="card-title mt-2">{{startup.companyName}}</h2>
             <div class="row mainrow">
             {% for appointment in appointments %}
                 <div class="col-lg-2 col-md-12">
                     <div class="card profile-card-4">
                         <div class="background-block">
-                        <img src="https://i.imgur.com/17eCqi9.png" alt="profile-sample1" class="background"/>
+                        <img src="https://i.imgur.com/F1vprAz.png" alt="profile-sample1" class="background"/>
                         </div>
                         <div class="profile-thumb-block">
-                            <img src="{{appointment.startup.user.profile_pic.url}}" alt="profile-image" class="profile"/>
+                            <img src="{{appointment.mentor.mentorPic.url}}" alt="profile-image" class="profile"/>
                         </div>
                         <div class="card-content">
-                            <h3>{{appointment.startup.companyName}}</h3>
-                            {% if appointment.mentorResponse %}
+                            <h3>{{appointment.mentor.name}}</h3>
+                            {% if appointment.startupResponse %}
                                 <h3 style="display: block;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><i class="fas fa-undo-alt" style="background: #007bff; border: 1px solid #007bff; cursor: pointer;" onclick="undoresponse({{appointment.id}})"></i></h3>
                                 <div id="appointment{{appointment.id}}" style="display: none">
                                     <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want')">Want</button>
@@ -206,7 +201,7 @@
                                 </div>
                             {% endif %}
                             <div class="form-group" style="margin: 1em;">
-                                <label>Whye</label>
+                                <label>Why</label>
                                 <textarea rows="4" cols="80" class="form-control" placeholder="Type here"></textarea>
                             </div>
                         </div>
@@ -235,17 +230,17 @@
             elementtoupdate.startup = response
         } else {
             responses.push(
-            {'id': id, 'mentorresponse': response}
+            {'id': id, 'startup': response}
             )
         }
-      buttons = document.getElementById("appointment" + id);
-      buttons.style.display = 'none';
-      selectedresponse = document.getElementById("responsemessage" + id);
-      selectedresponse.style.display = 'block';
-      if (responses.length === mentorstotal) {
-        mybutton = document.getElementById("submitbutton")
-        mybutton.classList.remove("disabled");
-      }
+        buttons = document.getElementById("appointment" + id);
+        buttons.style.display = 'none';
+        selectedresponse = document.getElementById("responsemessage" + id);
+        selectedresponse.style.display = 'block';
+        if (responses.length === mentorstotal) {
+            mybutton = document.getElementById("submitbutton")
+            mybutton.classList.remove("disabled");
+        }
     }
 
     function undoresponse(id) {
@@ -256,7 +251,7 @@
             objecttoupdate.startup = '';
         } else {
             var objecttoupdate = {}
-            objecttoupdate = {'id': id, 'mentorresponse': ''}
+            objecttoupdate = {'id': id, 'startup': ''}
             responses.push(objecttoupdate)
         }
         buttons = document.getElementById("appointment" + id);
@@ -267,7 +262,7 @@
     }
 
     function submit (answers=responses) {
-        fetch('/mentorresponses', {
+        fetch('/updateresponses', {
           method: 'POST',
           headers:{'content-type': 'application/json'},
           body: JSON.stringify(answers)

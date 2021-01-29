@@ -15724,6 +15724,7 @@ img {
 .modal.modal-black .modal-content {
   background: linear-gradient(to bottom, #222a42 0%, #1d253b 100%);
   color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-10%);
 }
 
 .modal.modal-black .modal-content .modal-header .modal-title,

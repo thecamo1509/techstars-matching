@@ -8,8 +8,7 @@ from .engine import scheduler, loadmentors
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from datetime import date, datetime
-
-CHECKRESULTS = True
+import json
 
 @login_required(login_url="/login/")
 def index(request):
@@ -17,7 +16,7 @@ def index(request):
 
 @login_required(login_url="/login/")
 def pages(request):
-
+    checkresults = False
     startups_list = Startup.objects.all()
     mentors_list = Mentor.objects.all()
     appointmentlist = Appointment.objects.all()
@@ -25,6 +24,8 @@ def pages(request):
     mymentors = Mentor.objects.filter(startup=currentstartup)
     todayappointments = Appointment.objects.filter(startup=currentstartup, date=str(date.today()))
     completedappointments = Appointment.objects.filter(status="completed", startup=currentstartup)
+    if completedappointments.count() != 0:
+        checkresults = True
     currenttime = datetime.now().time()
     context = {
         'startups': startups_list,
@@ -34,8 +35,9 @@ def pages(request):
         'mymentors': mymentors,
         'todayappointments': todayappointments,
         'currenttime': currenttime,
-        'checkresults': CHECKRESULTS,
+        'checkresults': checkresults,
         "completedappointments": completedappointments,
+        "range": range(7, completedappointments.count() + 1)
     }
 
     # All resource paths end in .html.
@@ -86,3 +88,72 @@ def uploadfile(request):
         return HttpResponse(html_template.render(context, request))
     html_template = loader.get_template('upload.html')
     return HttpResponse(html_template.render(context, request))
+
+@csrf_exempt
+def updateappointmentstartup(request):
+    if request.method == 'POST':
+        body = json.loads(request.body)
+        for appointment in body:
+            print(appointment)
+            appointmentToUpdate = Appointment.objects.get(id=appointment['id'])
+            appointmentToUpdate.startupResponse = appointment['startup']
+            appointmentToUpdate.status = "completed"
+            appointmentToUpdate.save()
+    return HttpResponse("ok")
+
+
+def mentors(request, id):
+    mentor = Mentor.objects.get(id=id)
+    mentorappointments = Appointment.objects.filter(mentor=mentor)
+    context =  {
+        'mentor': mentor,
+        'appointments': mentorappointments,
+    }
+    return render(request, "page-blank.html", context=context)
+
+def startups(request, id):
+    startup = Startup.objects.get(id=id)
+    startupappointments = Appointment.objects.filter(startup=startup)
+    context =  {
+        'startup': startup,
+        'appointments': startupappointments,
+    }
+    return render(request, "userview.html", context=context)
+
+@csrf_exempt
+def updateappointmentmentor(request):
+    if request.method == 'POST':
+        body = json.loads(request.body)
+        print(body)
+        for appointment in body:
+            appointmentToUpdate = Appointment.objects.get(id=appointment['id'])
+            appointmentToUpdate.mentorResponse = appointment['mentorresponse']
+            appointmentToUpdate.save()
+    return HttpResponse("ok")
+
+@login_required(login_url="/login/")
+def summary(request):
+    startups = Startup.objects.all()
+    mentors = Mentor.objects.all()
+    mylist = []
+    mentordict = {'want': 3, 'willing': 1, 'wont': 0}
+    startupdict = {'want': 2, 'willing': 1, 'wont': 0}
+    for mentor in mentors:
+        mylist2 = [mentor.name]
+        for startup in startups:
+            try:
+                appointment = Appointment.objects.get(startup=startup, mentor=mentor)
+                value = mentordict[appointment.mentorResponse] * startupdict[appointment.startupResponse]
+            except:
+                value = "na"
+            mylist2.append(value)
+        mylist.append(mylist2)
+
+    print(len(mylist))
+    print(len(mylist[0]))
+    context = {
+        'startups': startups,
+        'mentors': mentors,
+        'mylist': mylist,
+    }
+    return render(request, "summary.html", context=context)

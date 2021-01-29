@@ -23,6 +23,12 @@ RESPONSES = [
     ('willing', 'Willing'),
 ]
 
+STATUSES = [
+    ('pending', 'Pending'),
+    ('in progress', 'In Progress'),
+    ('completed', 'Completed'),
+]
+
 
 class User(AbstractUser):
     USER_TYPE_CHOICES = (
@@ -60,7 +66,7 @@ class Appointment(models.Model):
     time = models.TimeField()
     endtime = models.TimeField()
     meet = models.URLField()
-    status = models.CharField(max_length=50)
+    status = models.CharField(max_length=50, choices=STATUSES)
     mentorResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
     startupResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
     mentorNotes = models.CharField(max_length=200, blank=True)

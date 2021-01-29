@@ -7,172 +7,285 @@
 
 {% block content %}
 <style>
-/*Profile Card 3*/
-.profile-card-3 {
-    font-family: 'Open Sans', Arial, sans-serif;
-    position: relative;
-    float: left;
-    overflow: hidden;
-    width: 100%;
-    text-align: center;
-    height:368px;
-    border:none;
-  }
-  .profile-card-3 .background-block {
+  /*Profile Card 3*/
+  .profile-card-3 {
+      font-family: 'Open Sans', Arial, sans-serif;
+      position: relative;
       float: left;
-      width: 100%;
-      height: 200px;
       overflow: hidden;
-  }
-  .profile-card-3 .background-block .background {
-    width:100%;
-    vertical-align: top;
-    opacity: 0.9;
-    transform: scale(2.8);
-  }
-  .profile-card-3 .card-content {
-    width: 100%;
-    padding: 15px 25px;
-    color:#232323;
-    float:left;
-    background:#181825;
-    height:50%;
-    border-radius:0 0 5px 5px;
-    position: relative;
-    z-index: 1;
-  }
-  .profile-card-3 .card-content::before {
-      content: '';
-      background: #181825;
-      width: 120%;
-      height: 100%;
-      left: 11px;
-      bottom: 51px;
-      position: absolute;
-      z-index: -1;
-      transform: rotate(-13deg);
-  }
-  .profile-card-3 .profile {
-    border-radius: 50%;
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    max-width: 100px;
-    opacity: 1;
-    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 1);
-    -webkit-transform: translate(-50%, 0%);
-    transform: translate(-50%, 0%);
-    z-index:2;
-  }
-  .profile-card-3 h3 {
-    margin: 0 0 5px;
-    font-weight: 600;
-    font-size:20px;
-  }
-  .profile-card-3 h3 small {
-    display: block;
-    font-size: 15px;
-  }
-  .profile-card-3 i {
-    display: inline-block;
-      font-size: 16px;
-      color: #39C463;
+      width: 100%;
       text-align: center;
-      border: 1px solid #39C463;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      border-radius: 50%;
-      margin:0 5px;
-  }
-  .profile-card-3 .icon-block{
-      float:left;
+      height:368px;
+      border:none;
+    }
+    .profile-card-3 .background-block {
+        float: left;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .profile-card-3 .background-block .background {
       width:100%;
-      margin-top:15px;
-  }
-  .profile-card-3 .icon-block a{
+      vertical-align: top;
+      opacity: 0.9;
+      transform: scale(2.8);
+    }
+    .profile-card-3 .card-content {
+      width: 100%;
+      padding: 15px 25px;
+      color:#232323;
+      float:left;
+      background:#181825;
+      height:50%;
+      border-radius:0 0 5px 5px;
+      position: relative;
+      z-index: 1;
+    }
+    .profile-card-3 .card-content::before {
+        content: '';
+        background: #181825;
+        width: 120%;
+        height: 100%;
+        left: 11px;
+        bottom: 51px;
+        position: absolute;
+        z-index: -1;
+        transform: rotate(-13deg);
+    }
+    .profile-card-3 .profile {
+      border-radius: 50%;
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      max-width: 100px;
+      opacity: 1;
+      box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 255, 255, 1);
+      -webkit-transform: translate(-50%, 0%);
+      transform: translate(-50%, 0%);
+      z-index:2;
+    }
+    .profile-card-3 h3 {
+      margin: 0 0 5px;
+      font-weight: 600;
+      font-size:20px;
+    }
+    .profile-card-3 h3 small {
+      display: block;
+      font-size: 15px;
+    }
+    .profile-card-3 i {
+      display: inline-block;
+        font-size: 16px;
+        color: #39C463;
+        text-align: center;
+        border: 1px solid #39C463;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        margin:0 5px;
+    }
+    .profile-card-3 .icon-block{
+        float:left;
+        width:100%;
+        margin-top:15px;
+    }
+    .profile-card-3 .icon-block a{
+        text-decoration:none;
+    }
+    .profile-card-3 i:hover {
+      background-color: #39C463;
+      color: black;
       text-decoration:none;
-  }
-  .profile-card-3 i:hover {
-    background-color: #39C463;
-    color: black;
-    text-decoration:none;
-  }
+    }
 
-   .profile-card-3 .boton{
-     position: relative;
-    display: inline-block;
-    font-weight: 600;
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    background: rgba(255,255,255, 0.3);
-    border: 1px solid transparent;
-    padding: 10px 10px;
-    font-size: 0.775rem;
-    line-height: 1.35em;
-    border-radius: 0.25rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-   }
+    .profile-card-3 .boton{
+      position: relative;
+      display: inline-block;
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      vertical-align: middle;
+      user-select: none;
+      background: rgba(255,255,255, 0.3);
+      border: 1px solid transparent;
+      padding: 10px 10px;
+      font-size: 0.775rem;
+      line-height: 1.35em;
+      border-radius: 0.25rem;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
 
-  .profile-card-3 .boton:hover {
-    background-color: #39C463;
-  }
+    .profile-card-3 .boton:hover {
+      background-color: #39C463;
+    }
 
-  .customrow {
-    position: relative;
-    flex-wrap: nowrap;
-    overflow-x: auto !important;
-  }
+    /*Profile Card 4*/
+  .profile-card-4 {
+      font-family: 'Open Sans', Arial, sans-serif;
+      position: relative;
+      float: left;
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+      border:none;
+    }
+    .profile-card-4 .background-block {
+        float: left;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .profile-card-4 .background-block .background {
+      width:100%;
+      vertical-align: top;
+      opacity: 0.9;
+      transform: scale(2.8);
+    }
+    .profile-card-4 .card-content {
+      width: 100%;
+      padding: 15px 25px;
+      color:#232323;
+      float:left;
+      background:#181825;
+      height:50%;
+      border-radius:0 0 5px 5px;
+      position: relative;
+      z-index: 1;
+    }
+    .profile-card-4 .card-content::before {
+        content: '';
+        background: #181825;
+        width: 120%;
+        height: 100%;
+        left: 11px;
+        bottom: 51px;
+        position: absolute;
+        z-index: -1;
+        transform: rotate(-13deg);
+    }
+    .profile-card-4 .profile {
+      border-radius: 50%;
+      position: absolute;
+      bottom: 60%;
+      left: 50%;
+      max-width: 100px;
+      opacity: 1;
+      box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 255, 255, 1);
+      -webkit-transform: translate(-50%, 0%);
+      transform: translate(-50%, 0%);
+      z-index:2;
+    }
+    .profile-card-4 h3 {
+      margin: 0 0 5px;
+      font-weight: 600;
+      font-size:20px;
+    }
+    .profile-card-4 h3 small {
+      display: block;
+      font-size: 15px;
+    }
+    .profile-card-4 i {
+      display: inline-block;
+        font-size: 16px;
+        color: #39C463;
+        text-align: center;
+        border: 1px solid #39C463;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 50%;
+        margin:0 5px;
+    }
+    .profile-card-4 .icon-block{
+        float:left;
+        width:100%;
+        margin-top:15px;
+    }
+    .profile-card-4 .icon-block a{
+        text-decoration:none;
+    }
+    .profile-card-4 i:hover {
+      background-color: #39C463;
+      color: black;
+      text-decoration:none;
+    }
 
-  .successbtn {
-    position=absolute;
-    bottom: -0.2em;
-    background-image: linear-gradient(to bottom left, #39C463, #136c2e, #39C463);
-  }
+    .profile-card-4 .boton{
+      position: relative;
+      display: inline-block;
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      vertical-align: middle;
+      user-select: none;
+      background: rgba(255,255,255, 0.3);
+      border: 1px solid transparent;
+      padding: 10px 10px;
+      font-size: 0.775rem;
+      line-height: 1.35em;
+      border-radius: 0.25rem;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
 
-  .successbtn:hover {
-    position=absolute;
-    bottom: -0.2em;
-    background-image: linear-gradient(to bottom left, #49ff80, #23ad4d, #49ff80) !important;
-  }
+    .profile-card-4 .boton:hover {
+      background-color: #39C463;
+    }
 
-  .warningbtn {
-    position=absolute;
-    bottom: -0.2em;
-    background-image: linear-gradient(to bottom left, #ffc107, #c19205, #ffc107);
-  }
+    .customrow {
+      position: relative;
+      flex-wrap: nowrap;
+      overflow-x: auto !important;
+    }
 
-  .warningbtn:hover {
-    position=absolute;
-    bottom: -0.2em;
-    background-image: linear-gradient(to bottom left, #ffe800, #cc9c10, #ffe800) !important;
-  }
+    .successbtn {
+      position=absolute;
+      bottom: -0.2em;
+      background-image: linear-gradient(to bottom left, #39C463, #136c2e, #39C463);
+    }
 
-  .dangerbtn {
-    position=absolute;
-    bottom: -0.2em;
-    background-image: linear-gradient(to bottom left, #dc3545, #c82333, #dc3545);
-  }
+    .successbtn:hover {
+      position=absolute;
+      bottom: -0.2em;
+      background-image: linear-gradient(to bottom left, #49ff80, #23ad4d, #49ff80) !important;
+    }
 
-  .dangerbtn:hover {
-    position=absolute;
-    bottom: -0.2em;
-    background-image: linear-gradient(to bottom left, #ff3e51, #da1327, #ff3e51) !important;
-  }
+    .warningbtn {
+      position=absolute;
+      bottom: -0.2em;
+      background-image: linear-gradient(to bottom left, #ffc107, #c19205, #ffc107);
+    }
 
-  .col {
-    display: inline-block;
-  }
+    .warningbtn:hover {
+      position=absolute;
+      bottom: -0.2em;
+      background-image: linear-gradient(to bottom left, #ffe800, #cc9c10, #ffe800) !important;
+    }
+
+    .dangerbtn {
+      position=absolute;
+      bottom: -0.2em;
+      background-image: linear-gradient(to bottom left, #dc3545, #c82333, #dc3545);
+    }
+
+    .dangerbtn:hover {
+      position=absolute;
+      bottom: -0.2em;
+      background-image: linear-gradient(to bottom left, #ff3e51, #da1327, #ff3e51) !important;
+    }
+
+    .col {
+      display: inline-block;
+    }
 
 </style>
 
 
     <div class="row">
 
-      {% if checkresults %}
+      {% if checkresults == True %}
       <div class="col-12">
         <div class="card card-chart">
           <div class="card-header ">
@@ -184,23 +297,9 @@
                 <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                   <label class="btn btn-sm btn-primary btn-simple active" id="0">
                     <input type="radio" name="options" checked>
-                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block" data-toggle="modal" data-target="#staticBackdrop">Wan't</span>
+                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block" data-toggle="modal" data-target="#staticBackdrop">Select mentors</span>
                     <span class="d-block d-sm-none">
                       <i class="tim-icons icon-single-02"></i>
-                    </span>
-                  </label>
-                  <label class="btn btn-sm btn-primary btn-simple" id="1">
-                    <input type="radio" class="d-none d-sm-none" name="options">
-                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Willing</span>
-                    <span class="d-block d-sm-none">
-                      <i class="tim-icons icon-gift-2"></i>
-                    </span>
-                  </label>
-                  <label class="btn btn-sm btn-primary btn-simple" id="2">
-                    <input type="radio" class="d-none" name="options">
-                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Won't</span>
-                    <span class="d-block d-sm-none">
-                      <i class="tim-icons icon-tap-02"></i>
                     </span>
                   </label>
                 </div>
@@ -210,159 +309,43 @@
           <div class="card-body">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="false">
               <div class="carousel-inner">
-                {% if completedappointments|length <= 6 %}
                   <div class="carousel-item active">
                     <div class="row mx-2">
-                    {% for appointment in completedappointments %}
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="{{appointment.mentor.mentorPic.url}}" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>{{appointment.mentor.name}}<small>AB InBev Korea</small></h3>
-                              {% if appointment.startupResponse == "want" %}
-                                {% if appointment.mentorResponse == "want" %}
-                                  <h3 style="color: #39C463"><small><b>It's a match</b></small></h3>
-                                  <button class="boton" style="position=absolute; bottom: -0.2em">Request as lead mentor</button>
+                      {% for appointment in completedappointments %}
+                        <div class="col-lg-2 col-md-4">
+                          <div class="card profile-card-3">
+                            <div class="background-block">
+                              <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
+                            </div>
+                            <div class="profile-thumb-block">
+                                <img src="{{appointment.mentor.mentorPic.url}}" alt="profile-image" class="profile"/>
+                            </div>
+                              <div class="card-content">
+                                <h3>{{appointment.mentor.name}}<small>AB InBev Korea</small></h3>
+                                {% if appointment.startupResponse == "want" %}
+                                  {% if appointment.mentorResponse == "want" %}
+                                    <h3 style="color: #39C463"><small><b>It's a match</b></small></h3>
+                                    <button class="boton" style="position=absolute; bottom: -0.2em">Request as lead mentor</button>
+                                  {% else %}
+                                    <h3 ><small><b>Waiting for mentor's response</b></small></h3>
+                                  {% endif %}
+                                {% elif appointment.startupResponse == "willing" %}
+                                  <h3 style="color: #ffc107"><small><b>You are willing to work with this mentor</b></small></h3>
                                 {% else %}
-                                  <h3 ><small><b>Waiting for mentor's response</b></small></h3>
+                                  <h3 style="color: #dc3545"><small><b>You don't want to work with this mentor</b></small></h3>
                                 {% endif %}
-                              {% elif appointment.startupResponse == "willing" %}
-                                <h3 style="color: #ffc107"><small><b>You are willing to work with this mentor</b></small></h3>
-                              {% else %}
-                                <h3 style="color: #dc3545"><small><b>You don't want to work with this mentor</b></small></h3>
-                              {% endif %}
-                              
+                              </div>
                             </div>
+                        </div>
+                        {% if forloop.counter|divisibleby:6 and not forloop.last %}
                           </div>
-                      </div>
-                    {% endfor %}
+                          </div>
+                          <div class="carousel-item">
+                            <div class="row mx-2">
+                        {% endif %}
+                      {% endfor %}
                     </div>
                   </div>
-                {% else %}
-                  <div class="carousel-item active">
-                    <div class="row mx-2">
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="https://dl.airtable.com/.attachmentThumbnails/a16d41b15d43805f585eb53f08dec245/c240a4b7" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>Hoh<small>AB InBev Korea</small></h3>
-                              <h3 style="color: #39C463"><small><b>It's a match</b></small></h3>
-                              <button class="boton" style="position=absolute; bottom: -0.2em">Request as lead mentor</button>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="https://dl.airtable.com/.attachmentThumbnails/0fbb35897f253da8e0eb2a7cc4d66214/e7e037eb" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>Rodrigo Sanchez<small>La Haus</small></h3>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="https://dl.airtable.com/.attachmentThumbnails/1f113f19f3271b8409b360c7dacbbe92/7df7a956" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>Pascal Wagner<small>Techstars</small></h3>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="https://dl.airtable.com/.attachmentThumbnails/80d6c7210764cb01005b2ffa97616080/6615f6c0" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>Rachel ten Brink<small>Day One</small></h3>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="https://dl.airtable.com/.attachmentThumbnails/89976a3ce66f1cd7aab3fbbee91febb0/0800fd45" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>Sam Laakkonen<small>Techstars</small></h3>
-                              <h3 style="color: #39C463"><small><b>It's a match</b></small></h3>
-                              <button class="boton" style="position=absolute; bottom: -0.2em">Request as lead mentor</button>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="https://dl.airtable.com/.attachmentThumbnails/175b5bb3c5484afbacb3034a27dd1010/6443c449" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>Miguel Roque<small>Bezos Academy</small></h3>
-                              <h3 style="color: #39C463"><small><b>It's a match</b></small></h3>
-                              <button class="boton" style="position=absolute; bottom: -0.2em">Request as lead mentor</button>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="row mx-2">
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="https://dl.airtable.com/.attachmentThumbnails/a16d41b15d43805f585eb53f08dec245/c240a4b7" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>Amy Kim<small>AB InBev Korea</small></h3>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-lg-2 col-md-4">
-                        <div class="card profile-card-3">
-                          <div class="background-block">
-                            <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
-                          </div>
-                          <div class="profile-thumb-block">
-                              <img src="https://dl.airtable.com/.attachmentThumbnails/0fbb35897f253da8e0eb2a7cc4d66214/e7e037eb" alt="profile-image" class="profile"/>
-                          </div>
-                            <div class="card-content">
-                              <h3>Rodrigo Sanchez<small>La Haus</small></h3>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                {% endif %}
               </div>
             </div>
           </div>
@@ -390,23 +373,9 @@
                   <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
                     <label class="btn btn-sm btn-primary btn-simple active" id="0">
                       <input type="radio" name="options" checked>
-                      <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block" data-toggle="modal" data-target="#staticBackdrop">Wan't</span>
+                      <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block" data-toggle="modal" data-target="#staticBackdrop">Select mentors</span>
                       <span class="d-block d-sm-none">
                         <i class="tim-icons icon-single-02"></i>
-                      </span>
-                    </label>
-                    <label class="btn btn-sm btn-primary btn-simple" id="1">
-                      <input type="radio" class="d-none d-sm-none" name="options">
-                      <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Willing</span>
-                      <span class="d-block d-sm-none">
-                        <i class="tim-icons icon-gift-2"></i>
-                      </span>
-                    </label>
-                    <label class="btn btn-sm btn-primary btn-simple" id="2">
-                      <input type="radio" class="d-none" name="options">
-                      <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Won't</span>
-                      <span class="d-block d-sm-none">
-                        <i class="tim-icons icon-tap-02"></i>
                       </span>
                     </label>
                   </div>
@@ -415,7 +384,7 @@
             </div>
             <div class="card-body">
             <div class="text-center">
-              <div class="my-auto"><h1>There's no mentors to show</h1></div>
+              <div class="my-auto"><h1>There's no mentors selected</h1></div>
             </div>
             </div>
           </div>
@@ -427,16 +396,6 @@
         <div class="card card-tasks">
           <div class="card-header ">
             <h6 class="title d-inline">Today's Meetings ({{todayappointments|length}})</h6>
-            <div class="dropdown">
-              <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown">
-                <i class="tim-icons icon-settings-gear-63"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#pablo">Action</a>
-                <a class="dropdown-item" href="#pablo">Another action</a>
-                <a class="dropdown-item" href="#pablo">Something else</a>
-              </div>
-            </div>
           </div>
           <div class="card-body ">
             <div class="table-full-width table-responsive">
@@ -454,7 +413,7 @@
                         <p class="text-muted">Company, {{appointment.time }} (MST)</p>
                       </td>
                       <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                        <span rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task" style="cursor: auto;">
                           {% if appointment.time|date:"His" <= currenttime|date:"His" and appointment.endtime|date:"His" <= currenttime|date:"His" %}
                             <i class="fas fa-check" style="color: #39C463"></i><p>Completed</p>
                           {% elif appointment.time|date:"His" <= currenttime|date:"His" and appointment.endtime|date:"His" >= currenttime|date:"His" %}
@@ -462,7 +421,7 @@
                           {% else %}
                             <i class="fas fa-clock"></i><p>Pending</p>
                           {% endif %}
-                        </button>
+                        </span>
                       </td>
                     </tr>
                   {% endfor %}
@@ -487,7 +446,7 @@
     </div>
 
     <div class="modal fade modal-black bd-example-modal-lg" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title" id="staticBackdropLabel">Please choose the mentors you (want, are willing or are not willing) to work with</h4>
@@ -498,8 +457,8 @@
           <div class="modal-body">
             <div class="row">
               {% for appointment in todayappointments %}
-                <div class="col-lg-3 col-md-4">
-                  <div class="card profile-card-3">
+                <div class="col-lg-4">
+                  <div class="card profile-card-4">
                     <div class="background-block">
                       <img src="https://i.imgur.com/VWX2co0.png" alt="profile-sample1" class="background"/>
                     </div>
@@ -516,6 +475,10 @@
                           <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing')">Willing</button>
                           <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont')">Won't</button>
                         </div>
+                        <div class="form-group">
+                          <label>Comments</label>
+                          <textarea rows="4" cols="80" class="form-control" placeholder="Here you can leave your feedback"></textarea>
+                        </div>
                       </div>
                   </div>
                 </div>
@@ -524,7 +487,7 @@
           </div>
           <div class="modal-footer text-center">
 
-            <button type="button" class="btn btn-primary" onClick="submitresponses()">Submit</button>
+            <button type="button" class="btn btn-primary disabled" onClick="submitresponses()" style="margin: 0 auto;" id="submitbutton">Submit</button>
           </div>
         </div>
       </div>
@@ -542,6 +505,9 @@
     });
 
     var responses = []
+    var mentorstotal = {{todayappointments.count}}
+
+    console.log(mentorstotal)
 
     function appendresponses (id, response) {
       responses.push(
@@ -558,17 +524,39 @@
         selectedresponse = document.getElementById("selectedwont" + id);
       }
       selectedresponse.style.display = 'block';
+      if (responses.length === mentorstotal) {
+        mybutton = document.getElementById("submitbutton")
+        mybutton.classList.remove("disabled");
+      }
     }
 
     function submitresponses (answers=responses) {
-      console.log("The following responses were submitted")
-      console.log(answers)
-      $('#staticBackdrop').modal('hide')
+        fetch('/updateresponses', {
+          method: 'POST',
+          headers:{'content-type': 'application/json'},
+          body: JSON.stringify(answers)
+        })
+        .then(function(response) {
+          if(response.ok) {
+              window.location = "/index.html"
+              return response.text()
+          } else {
+              throw "Error en la llamada Ajax";
+          }
+
+        })
+        .then(function(texto) {
+          console.log(texto);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
     }
 
     function openmodal () {
       $('#staticBackdrop').modal('show')
     }
+
   </script>
 
 {% endblock javascripts %}

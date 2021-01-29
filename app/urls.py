@@ -13,6 +13,11 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    path('summary', views.summary, name='summary'),
     path('automatedbooking', views.appointmentview, name='automatedbooking'),
+    path('updateresponses', views.updateappointmentstartup, name='updateresponses'),
+    path('mentorresponses', views.updateappointmentmentor, name='mentorresponses'),
     path('upload', views.uploadfile, name='upload'),
+    path('mentors/<int:id>/', views.mentors, name='mentors'),
+    path('startup/<int:id>/', views.startups, name='startups'),
 ]
