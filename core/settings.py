@@ -20,7 +20,7 @@ SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 DEBUG = config('DEBUG', default=False)
 
 # load production server from .env
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '94c7d8fb1417.ngrok.io', config('SERVER', default='127.0.0.1')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '708eb77a8f98.ngrok.io', config('SERVER', default='127.0.0.1')]
 
 # Application definition
 

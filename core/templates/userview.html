@@ -1,12 +1,16 @@
 {% load static %}
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+    <link rel="icon" type="image/png"          href="{% static 'assets/img/techstarsfavicon.png'%}">
+
     <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="{% static 'assets/css/black-dashboard.css' %}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
-  
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
 {% endblock stylesheets %}
@@ -17,22 +21,21 @@
         margin: 2em;
     }
 
-    
-    /*Profile Card 4*/
-    .profile-card-4 {
+/*Profile Card 3*/
+  .profile-card-4 {
       font-family: 'Open Sans', Arial, sans-serif;
       position: relative;
       float: left;
       overflow: hidden;
       width: 100%;
       text-align: center;
+      height:40em;
       border:none;
     }
-
     .profile-card-4 .background-block {
         float: left;
         width: 100%;
-        height: 15em;
+        height: 200px;
         overflow: hidden;
     }
     .profile-card-4 .background-block .background {
@@ -47,6 +50,7 @@
       color:#232323;
       float:left;
       background:#181825;
+      height:50%;
       border-radius:0 0 5px 5px;
       position: relative;
       z-index: 1;
@@ -57,7 +61,7 @@
         width: 120%;
         height: 100%;
         left: 11px;
-        bottom: 50px;
+        bottom: 51px;
         position: absolute;
         z-index: -1;
         transform: rotate(-13deg);
@@ -65,7 +69,7 @@
     .profile-card-4 .profile {
       border-radius: 50%;
       position: absolute;
-      bottom: 60%;
+      bottom: 65%;
       left: 50%;
       max-width: 100px;
       opacity: 1;
@@ -87,7 +91,6 @@
     .profile-card-4 i {
       display: inline-block;
         font-size: 16px;
-        background-color: #39C463;
         color: white;
         text-align: center;
         border: 1px solid #39C463;
@@ -104,6 +107,11 @@
     }
     .profile-card-4 .icon-block a{
         text-decoration:none;
+    }
+    .profile-card-4 i:hover {
+      background-color: #5baaff !important;
+      color: white;
+      text-decoration:none;
     }
 
     .profile-card-4 .boton{
@@ -139,6 +147,20 @@
       background-image: linear-gradient(to bottom left, #39C463, #136c2e, #39C463);
     }
 
+    .successbtninstructions {
+      position=absolute;
+      bottom: -0.2em;
+      background: rgba(0,0,0,0);
+      border: 2px solid #39C463;
+    }
+
+    .successbtninstructions:hover {
+      position=absolute;
+      background: rgba(0,0,0,0) !important;
+      border: 2px solid #39C463;
+      cursor: auto;
+    }
+
     .successbtn:hover {
       position=absolute;
       bottom: -0.2em;
@@ -149,6 +171,20 @@
       position=absolute;
       bottom: -0.2em;
       background-image: linear-gradient(to bottom left, #ffc107, #c19205, #ffc107);
+    }
+
+    .warningbtninstructions {
+      position=absolute;
+      bottom: -0.2em;
+      background: rgba(0,0,0,0);
+      border: 2px solid #ffc107;
+    }
+
+    .warningbtninstructions:hover {
+      position=absolute;
+      background: rgba(0,0,0,0) !important;
+      border: 2px solid #ffc107;
+      cursor: auto;
     }
 
     .warningbtn:hover {
@@ -163,16 +199,46 @@
       background-image: linear-gradient(to bottom left, #dc3545, #c82333, #dc3545);
     }
 
+    .dangerbtninstructions {
+      position=absolute;
+      bottom: -0.2em;
+      background: rgba(0,0,0,0);
+      border: 2px solid #dc3545;
+    }
+
+    .dangerbtninstructions:hover {
+      position=absolute;
+      background: rgba(0,0,0,0) !important;
+      border: 2px solid #dc3545;
+      cursor: auto;
+    }
+
     .dangerbtn:hover {
       position=absolute;
       bottom: -0.2em;
       background-image: linear-gradient(to bottom left, #ff3e51, #da1327, #ff3e51) !important;
     }
 
+    .undo {
+        background: #007bff;
+        border: 1px solid #007bff;
+    }
+
+    .undo:hover {
+        background: #5baaff !important;
+        border: 1px solid #007bff;
+    }
 </style>
-    <div style="padding: 2em">
+    <div>
         <div class="card text-center">
             <h2 class="card-title mt-2">{{startup.companyName}}</h2>
+            <div class="left">
+                <h4>User Guide</h4>
+                <span class="btn btn-sm successbtninstructions">Want: <h5>you would want to work with them as a Lead Mentor</h5></span>
+                <span class="btn btn-sm warningbtninstructions">Willing: <h5>you would be willing to work with them as a Lead Mentor</h5></span>
+                <span class="btn btn-sm dangerbtninstructions">Won't: <h5>you do not want/ won't work with them as a Lead Mentor.</h5></span>
+                <h4 class="mt-2">**** It's important to submit WANT for any mentor you'd be thrilled to work with and WILLING for any mentor you'd agree to work with. Please don't reserve WANT/ WILLING for only your top 3 mentor choices. ****</h4>
+            </div>
             <div class="row mainrow">
             {% for appointment in appointments %}
                 <div class="col-lg-2 col-md-12">
@@ -186,14 +252,14 @@
                         <div class="card-content">
                             <h3>{{appointment.mentor.name}}</h3>
                             {% if appointment.startupResponse %}
-                                <h3 style="display: block;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><i class="fas fa-undo-alt" style="background: #007bff; border: 1px solid #007bff; cursor: pointer;" onclick="undoresponse({{appointment.id}})"></i></h3>
+                                <h3 style="display: block;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
                                 <div id="appointment{{appointment.id}}" style="display: none">
                                     <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want')">Want</button>
                                     <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing')">Willing</button>
                                     <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont')">Won't</button>
                                 </div>
                             {% else %}
-                                <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><i class="fas fa-undo-alt" style="background: #007bff; border: 1px solid #007bff; cursor: pointer;" onclick="undoresponse({{appointment.id}})"></i></h3>
+                                <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
                                 <div id="appointment{{appointment.id}}">
                                     <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want')">Want</button>
                                     <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing')">Willing</button>
@@ -201,7 +267,7 @@
                                 </div>
                             {% endif %}
                             <div class="form-group" style="margin: 1em;">
-                                <label>Why</label>
+                                <label>Please explain:</label>
                                 <textarea rows="4" cols="80" class="form-control" placeholder="Type here"></textarea>
                             </div>
                         </div>
@@ -246,11 +312,16 @@
     function undoresponse(id) {
         myid = id;
         console.log(responses)
+        var objecttoupdate = {}
         if(responses.length !== 0){
-            objecttoupdate = responses.find(object => object.id === id)
-            objecttoupdate.startup = '';
+            if(responses.includes(responses.find(object => object.id === id))){
+                objecttoupdate = responses.find(object => object.id === id)
+                objecttoupdate.startup = ''
+            } else {
+              objecttoupdate = {'id': id, 'startup': ''}
+              responses.push(objecttoupdate)
+            }
         } else {
-            var objecttoupdate = {}
             objecttoupdate = {'id': id, 'startup': ''}
             responses.push(objecttoupdate)
         }
