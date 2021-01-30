@@ -38,7 +38,8 @@ def loaddata(filename):
     for c in companies:
         c_lower = c.lower()
         c_final = c_lower.translate({ord(c): None for c in string.whitespace})
-        c_user = User.objects.get(username=c_final)
+        print(c_final)
+        c_user, _ = User.objects.get_or_create(username=c_final)
         obj, created = Startup.objects.get_or_create(companyName=c, user=c_user)
 
     com = Startup.objects.all()

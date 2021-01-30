@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Upload csv file {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+<style>
+.formdiv{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -250px;
+  width: 500px;
+  height: 200px;
+}
+</style>
+<h1> Upload CSV file </h1>
+<div class="formdiv">
+  <h2>!ERROR</p>
+  <h2>The File uploaded has inconsistencies</p>
+ </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}
