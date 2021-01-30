@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %} Upload csv file {% endblock %}
+{% block title %} Upload zip file {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
@@ -67,12 +67,12 @@
 }
 
 </style>
-<h1> Upload CSV file </h1>
+<h1> Upload zip file</h1>
 <div class="formdiv">
   <form action="upload" method=post enctype=multipart/form-data class="upform">
 	{% csrf_token %}
   <input type=file name=file>
-  <p>Drag your CSV file here or click in this area.</p>
+  <p>Drag your zip file here or click in this area.</p>
   <button class="upbutton" type="submit">Upload</button>
 </form>
  </div>
@@ -85,7 +85,13 @@
 <script>
 $(document).ready(function(){
   $('form input').change(function () {
-    $('form p').text(this.files[0].name + " file selected");
+	  if (this.files[0].name.split('.').pop() == "zip") {
+    		$('form p').text(this.files[0].name + " file selected");
+		}
+	  else {
+		alert("This is not a zip file");
+		location.reload();
+		}
   });
 });
 </script>

@@ -4,7 +4,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from .models import Startup, Mentor, Appointment
-from .engine import scheduler, loadmentors
+from .engine import scheduler, loadzip
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from datetime import date, datetime
@@ -79,11 +79,13 @@ def uploadfile(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         mentors = Mentor.objects.all()
-        scheduler.automaticBooking()
         uploaded_file_url = fs.url(filename)
         print("Recibi el post")
-        loadmentors.loaddata(filename)
-
+        try:
+            loadzip.loadzip(filename)
+        except:
+            html_template = loader.get_template('upload_fail.html')
+            return HttpResponse(html_template.render(context, request))
         html_template = loader.get_template('upload2.html')
         return HttpResponse(html_template.render(context, request))
     html_template = loader.get_template('upload.html')
