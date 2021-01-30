@@ -123,16 +123,21 @@ def loaddata(source):
         day = "undefined"
         timeslot = "undefined"
         email = "undefined"
+        pic = "undefined"
         if type(source.iloc[i, 4]) == str:
             day = source.iloc[i, 4].split(" - ")[0]
             timeslot = source.iloc[i, 4].split(" - ")[1]
         if type(source.iloc[i, 2]) == str:
             email = source.iloc[i, 2]
+        if type(source.iloc[i, 13]) == str:
+            pic = source.iloc[i, 13]
+        print(pic)
         obj, _ = Mentor.objects.update_or_create(name=m,
                                                  defaults={'name': m,
                                                            'email': email,
                                                            'day': day.lower(),
-                                                           'timeSlot': timeslot
+                                                           'timeSlot': timeslot,
+                                                           'mentorPic': pic,
                                                            })
         obj.startup.add(*st)
         obj.save()

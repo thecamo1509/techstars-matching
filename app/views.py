@@ -81,11 +81,10 @@ def uploadfile(request):
         mentors = Mentor.objects.all()
         uploaded_file_url = fs.url(filename)
         print("Recibi el post")
-        try:
-            loadzip.loadzip(filename)
-        except:
+        loadzip.loadzip(filename)
+        """except:
             html_template = loader.get_template('upload_fail.html')
-            return HttpResponse(html_template.render(context, request))
+            return HttpResponse(html_template.render(context, request))"""
         html_template = loader.get_template('upload2.html')
         return HttpResponse(html_template.render(context, request))
     html_template = loader.get_template('upload.html')
@@ -106,7 +105,7 @@ def updateappointmentstartup(request):
 
 def mentors(request, id):
     mentor = Mentor.objects.get(id=id)
-    mentorappointments = Appointment.objects.filter(mentor=mentor)
+    mentorappointments = Appointment.objects.filter(mentor=mentor, status='completed')
     context =  {
         'mentor': mentor,
         'appointments': mentorappointments,
@@ -115,10 +114,24 @@ def mentors(request, id):
 
 def startups(request, id):
     startup = Startup.objects.get(id=id)
-    startupappointments = Appointment.objects.filter(startup=startup)
+    currentdate = date.today()
+    currenttime = datetime.today().time()
+    startupappointments = Appointment.objects.filter(startup=startup, status='pending')
+    for appointment in startupappointments:
+        print("La hora es: {}".format(currenttime))
+        if appointment.date <= currentdate:
+            if appointment.endtime <= currenttime:
+                print("I changed the status")
+                appointment.status = 'completed'
+                appointment.save()
+            else:
+                pass
+        else:
+            pass
+    completedappointments = Appointment.objects.filter(startup=startup, status='completed')
     context =  {
         'startup': startup,
-        'appointments': startupappointments,
+        'appointments': completedappointments,
     }
     return render(request, "userview.html", context=context)
 
@@ -141,21 +154,31 @@ def summary(request):
     mentordict = {'want': 3, 'willing': 1, 'wont': 0}
     startupdict = {'want': 2, 'willing': 1, 'wont': 0}
     for mentor in mentors:
-        mylist2 = [mentor.name]
+        mylist2 = [mentor]
         for startup in startups:
             try:
                 appointment = Appointment.objects.get(startup=startup, mentor=mentor)
-                value = mentordict[appointment.mentorResponse] * startupdict[appointment.startupResponse]
+                value = {'id': appointment.id, 'value':mentordict[appointment.mentorResponse] * startupdict[appointment.startupResponse]}
             except:
-                value = "na"
+                value = {'id': 'na','value': "na"}
             mylist2.append(value)
         mylist.append(mylist2)
 
-    print(len(mylist))
-    print(len(mylist[0]))
+    appointments = Appointment.objects.all()
     context = {
         'startups': startups,
         'mentors': mentors,
         'mylist': mylist,
+        'appointments': appointments,
     }
     return render(request, "summary.html", context=context)
+
+
+def results(request, appointmentid):
+    mentor = Mentor.objects.get(id=id)
+    mentorappointments = Appointment.objects.filter(mentor=mentor, status='completed')
+    context =  {
+        'mentor': mentor,
+        'appointments': mentorappointments,
+    }
+    return render(request, "results.html", context=context)

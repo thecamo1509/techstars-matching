@@ -54,7 +54,7 @@ class Mentor(models.Model):
     day = models.CharField(max_length=200, choices=DAY_CHOICES)
     timeSlot = models.CharField(max_length=50, choices=TIME_SLOTS_CHOICES)
     startup = models.ManyToManyField(Startup)
-    mentorPic = models.ImageField()
+    mentorPic = models.URLField()
 
     def __str__(self):
         return self.name

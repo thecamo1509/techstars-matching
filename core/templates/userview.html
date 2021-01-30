@@ -29,7 +29,7 @@
       overflow: hidden;
       width: 100%;
       text-align: center;
-      height:40em;
+      height:50em;
       border:none;
     }
     .profile-card-4 .background-block {
@@ -228,6 +228,109 @@
         background: #5baaff !important;
         border: 1px solid #007bff;
     }
+
+    .range {
+    display: table;
+    position: relative;
+    height: 25px;
+    background-color: rgba(245, 245, 245, 0.2);
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.range input[type="range"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+
+    display: table-cell;
+    width: 100%;
+    background-color: transparent;
+    height: 25px;
+    cursor: pointer;
+}
+.range input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+
+    width: 11px;
+    height: 25px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0px;
+    background-color: rgb(153, 153, 153);
+}
+
+.range input[type="range"]::-moz-slider-thumb {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+    
+    width: 11px;
+    height: 25px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0px;
+    background-color: rgb(153, 153, 153);
+}
+
+.range output {
+    display: table-cell;
+    padding: 3px 5px 2px;
+    min-width: 40px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(153, 153, 153);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+}
+.range input[type="range"] {
+    outline: none;
+}
+
+.range.range-success input[type="range"]::-webkit-slider-thumb {
+    background-color: rgb(92, 184, 92);
+}
+.range.range-success input[type="range"]::-moz-slider-thumb {
+    background-color: rgb(92, 184, 92);
+}
+.range.range-success output {
+    background-color: rgb(92, 184, 92);
+}
+.range.range-success input[type="range"] {
+    outline-color: rgb(92, 184, 92);
+}
+
 </style>
     <div>
         <div class="card text-center">
@@ -247,7 +350,7 @@
                         <img src="https://i.imgur.com/F1vprAz.png" alt="profile-sample1" class="background"/>
                         </div>
                         <div class="profile-thumb-block">
-                            <img src="{{appointment.mentor.mentorPic.url}}" alt="profile-image" class="profile"/>
+                            <img src="{{appointment.mentor.mentorPic}}" alt="profile-image" class="profile"/>
                         </div>
                         <div class="card-content">
                             <h3>{{appointment.mentor.name}}</h3>
@@ -266,8 +369,17 @@
                                     <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont')">Won't</button>
                                 </div>
                             {% endif %}
+                            <div class="row">
+                              <div class="col">
+                                <label class="mt-2">Slide to rank</label>
+                                <div class="range range-success">
+                                  <input type="range" name="range" min="1" max="5" value="3" onchange="range.value=value">
+                                  <output id="range">5</output>
+                                </div>
+                              </div>
+                            </div>
                             <div class="form-group" style="margin: 1em;">
-                                <label>Please explain:</label>
+                                <label>Please explain: (optional)</label>
                                 <textarea rows="4" cols="80" class="form-control" placeholder="Type here"></textarea>
                             </div>
                         </div>

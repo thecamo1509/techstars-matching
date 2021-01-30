@@ -40,7 +40,7 @@
                 </th>
                 {% for startup in startups %}
                     <th class="text-center">
-                    {{startup.companyName}}
+                    <a href="/startup/{{startup.id}}/" target="blank">{{startup.companyName}}</a>
                     </th>
                 {% endfor %}
               </tr>
@@ -49,20 +49,20 @@
                 {% for mylist2 in mylist %}
                 <tr>
                     {% for value in mylist2 %}
-                        {% if value == 6 %}
-                          <td class="text-center"><span class="dot"></span></td>
-                        {% elif value == 3%}
+                        {% if value.value == 6 %}
+                          <td class="text-center"><span data-toggle="modal" data-target="#staticBackdrop836" class="dot"></span></td>
+                        {% elif value.value == 3%}
                           <td class="text-center"><span class="dot" style="background-color: #5cb85c;"></span></td>
-                        {% elif value == 2%}
+                        {% elif value.value == 2%}
                           <td class="text-center"><span class="dot" style="background-color: #ffc300;"></span></td>
-                        {% elif value == 1%}
+                        {% elif value.value == 1%}
                           <td class="text-center"><span class="dot" style="background-color: #ffef5c;"></span></td>
-                        {% elif value == 0%}
+                        {% elif value.value == 0%}
                           <td class="text-center"><span class="dot" style="background-color: red;"></span></td>
-                        {% elif value == 'na'%}
-                          <td class="text-center"><span class="dot" style="background-color: #fff;"></span></td>
+                        {% elif value.value == 'na'%}
+                          <td class="text-center"><span data-toggle="modal" data-target="#staticBackdrop{{value.id}}" class="dot" style="background-color: #fff;"></span></td>
                         {% else %}
-                          <td class="text-center">{{value}}</span></td>
+                          <td class="text-center"><a href="mentors/{{value.id}}/" target="blank">{{value}}</a></td>
                         {% endif %}
                     {% endfor %}
                 </tr>
@@ -73,9 +73,43 @@
       </div>
     </div>
   </div>
+
+  {% for appointment in appointments %}
+    <div class="modal fade modal-black" id="staticBackdrop{{appointment.id}}" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title" id="staticBackdropLabel">Vote Results</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row m-2">
+                <h4>The company {{appointment.startup.companyName}} {{appointment.startupResponse}} to work with {{appointment.mentor.name}}</h4>
+                <h4>The mentor {{appointment.mentor.name}} {{appointment.mentorResponse}} to work with {{appointment.startup.companyName}}</h4>
+              </div>
+              <div class="row m-2">
+                <p>{{appointment.startup.companyName}} ranked {{appointment.mentor.name}} with {{appointment.startupRanking}} score</p>
+                <p>{{appointment.mentor.name}} ranked {{appointment.startup.companyName}} with {{appointment.mentorRanking}} score</p>
+              </div>
+              <div class="row m-2">
+                <p>{{appointment.startup.companyName}} leaved the following comments: {{appointment.startupComments}}</p>
+                <p>{{appointment.mentor.name}} leaved the following comments: {{appointment.mentorComments}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  {% endfor %}
 </div>
+</div>
+
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script>
+</script>
+{% endblock javascripts %}
