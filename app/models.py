@@ -41,8 +41,9 @@ class User(AbstractUser):
 
 class Startup(models.Model):
     companyName = models.CharField(max_length=200)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     whatwedo = models.CharField(max_length=400)
+    startupPic = models.URLField()
 
     def __str__(self):
         return self.companyName

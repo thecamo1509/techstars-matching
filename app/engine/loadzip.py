@@ -49,11 +49,11 @@ def load_appointment(data_ap, c_name):
     create an appointment in database
     """
     data_ap = data_ap.drop(['Unnamed: 2'], axis=1, errors='ignore')
-    dates = ['2020-02-01',
-             '2020-02-02',
-             '2020-02-03',
-             '2020-02-04',
-             '2020-02-05']
+    dates = ['2021-02-01',
+             '2021-02-02',
+             '2021-02-03',
+             '2021-02-04',
+             '2021-02-05']
 
     mentors = Mentor.objects.all()
     data_ap
@@ -96,9 +96,9 @@ def convertPM(hour):
 
 def loaddata(source):
     """
-        loads a csv file (source data) into database
+        loads a dataframe file (source data) into database
 
-        filename: file name of cvs file located in /media
+        source: dataframe
     """
     men_and_com = source['Name'].values.tolist()
     for i in range(len(men_and_com)):
@@ -106,12 +106,13 @@ def loaddata(source):
             break
     mentors = men_and_com[:i]
     companies = men_and_com[i+2:]
-    for c in companies:
-        c_lower = c.lower()
-        c_final = c_lower.translate({ord(c): None for c in string.whitespace})
-        c_user, _ = User.objects.get_or_create(username=c_final)
-        obj, created = Startup.objects.get_or_create(companyName=c,
-                                                     user=c_user)
+    for j, c in enumerate(companies):
+        # c_lower = c.lower()
+        # c_final = c_lower.translate({ord(c): None for c in string.whitespace})
+        # c_user, _ = User.objects.get_or_create(username=c_final)
+        pic = source.iloc[i+j+2, 4]
+        obj, created = Startup.objects.get_or_create(companyName=c, startupPic=pic)
+                                                     # user=c_user)
 
     com = Startup.objects.all()
     for i, m in enumerate(mentors):
@@ -132,7 +133,6 @@ def loaddata(source):
             email = source.iloc[i, 2]
         if type(source.iloc[i, 13]) == str:
             pic = source.iloc[i, 13]
-        print(pic)
         obj, _ = Mentor.objects.update_or_create(name=m,
                                                  defaults={'name': m,
                                                            'email': email,
