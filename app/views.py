@@ -105,10 +105,27 @@ def updateappointmentstartup(request):
 
 def mentors(request, id):
     mentor = Mentor.objects.get(id=id)
-    mentorappointments = Appointment.objects.filter(mentor=mentor, status='completed')
+    currentdate = date.today()
+    currenttime = datetime.today().time()
+    mentorappointments = Appointment.objects.filter(mentor=mentor, status='pending')
+    for appointment in mentorappointments:
+        print("La cita es: {}".format(appointment.date))
+        print("hoy es es: {}".format(currentdate))
+        if appointment.date <= currentdate:
+            print("La hore de cita es: {}".format(appointment.endtime))
+            print("La hora es: {}".format(currenttime))
+            if appointment.endtime <= currenttime:
+                print("I changed the status")
+                appointment.status = 'completed'
+                appointment.save()
+            else:
+                pass
+        else:
+            pass
+    completedappointments = Appointment.objects.filter(mentor=mentor, status='completed')
     context =  {
         'mentor': mentor,
-        'appointments': mentorappointments,
+        'appointments': completedappointments,
     }
     return render(request, "page-blank.html", context=context)
 
