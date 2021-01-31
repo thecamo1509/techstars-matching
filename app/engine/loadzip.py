@@ -49,11 +49,11 @@ def load_appointment(data_ap, c_name):
     create an appointment in database
     """
     data_ap = data_ap.drop(['Unnamed: 2'], axis=1, errors='ignore')
-    dates = ['2020-02-01',
-             '2020-02-02',
-             '2020-02-03',
-             '2020-02-04',
-             '2020-02-05']
+    dates = ['2021-02-01',
+             '2021-02-02',
+             '2021-02-03',
+             '2021-02-04',
+             '2021-02-05']
 
     mentors = Mentor.objects.all()
     data_ap

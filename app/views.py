@@ -105,23 +105,8 @@ def updateappointmentstartup(request):
 
 def mentors(request, id):
     mentor = Mentor.objects.get(id=id)
-    currentdate = date.today()
-    currenttime = datetime.today().time()
     mentorappointments = Appointment.objects.filter(mentor=mentor, status='pending')
-    for appointment in mentorappointments:
-        print("La cita es: {}".format(appointment.date))
-        print("hoy es es: {}".format(currentdate))
-        if appointment.date <= currentdate:
-            print("La hore de cita es: {}".format(appointment.endtime))
-            print("La hora es: {}".format(currenttime))
-            if appointment.endtime <= currenttime:
-                print("I changed the status")
-                appointment.status = 'completed'
-                appointment.save()
-            else:
-                pass
-        else:
-            pass
+    update_appointments(mentorappointments)
     completedappointments = Appointment.objects.filter(mentor=mentor, status='completed')
     context =  {
         'mentor': mentor,
@@ -129,22 +114,26 @@ def mentors(request, id):
     }
     return render(request, "page-blank.html", context=context)
 
-def startups(request, id):
-    startup = Startup.objects.get(id=id)
+
+def update_appointments(appointments):
+    """
+    update the status from pending to completed
+    """
     currentdate = date.today()
     currenttime = datetime.today().time()
+    for appointment in appointments:
+        if appointment.date < currentdate:
+            appointment.status = 'completed'
+            appointment.save()
+        elif appointment.date == currentdate and appointment.endtime <= currenttime:
+            appointment.status = 'completed'
+            appointment.save()
+
+
+def startups(request, id):
+    startup = Startup.objects.get(id=id)
     startupappointments = Appointment.objects.filter(startup=startup, status='pending')
-    for appointment in startupappointments:
-        print("La hora es: {}".format(currenttime))
-        if appointment.date <= currentdate:
-            if appointment.endtime <= currenttime:
-                print("I changed the status")
-                appointment.status = 'completed'
-                appointment.save()
-            else:
-                pass
-        else:
-            pass
+    update_appointments(startupappointments)
     completedappointments = Appointment.objects.filter(startup=startup, status='completed')
     context =  {
         'startup': startup,
