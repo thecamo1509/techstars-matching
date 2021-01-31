@@ -12,7 +12,7 @@ import json
 
 @login_required(login_url="/login/")
 def index(request):
-    return render(request, "calendar.html")
+    return render(request, "summary.html")
 
 @login_required(login_url="/login/")
 def pages(request):

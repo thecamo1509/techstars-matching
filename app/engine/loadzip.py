@@ -80,6 +80,7 @@ def load_appointment(data_ap, c_name):
                                                      startup=startup,
                                                      defaults={'date': date,
                                                                'time': time,
+                                                               'status': 'pending',
                                                                'endtime': end})
 
 

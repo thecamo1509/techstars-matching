@@ -2,7 +2,7 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 
-  
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -143,6 +143,20 @@
       overflow-x: auto !important;
     }
 
+    .successbtninstructions {
+      position=absolute;
+      bottom: -0.2em;
+      background: rgba(0,0,0,0);
+      border: 2px solid #39C463;
+    }
+
+    .successbtninstructions:hover {
+      position=absolute;
+      background: rgba(0,0,0,0) !important;
+      border: 2px solid #39C463;
+      cursor: auto;
+    }
+
     .successbtn {
       position=absolute;
       bottom: -0.2em;
@@ -161,6 +175,20 @@
       background-image: linear-gradient(to bottom left, #ffc107, #c19205, #ffc107);
     }
 
+    .warningbtninstructions {
+      position=absolute;
+      bottom: -0.2em;
+      background: rgba(0,0,0,0);
+      border: 2px solid #ffc107;
+    }
+
+    .warningbtninstructions:hover {
+      position=absolute;
+      background: rgba(0,0,0,0) !important;
+      border: 2px solid #ffc107;
+      cursor: auto;
+    }
+
     .warningbtn:hover {
       position=absolute;
       bottom: -0.2em;
@@ -171,6 +199,20 @@
       position=absolute;
       bottom: -0.2em;
       background-image: linear-gradient(to bottom left, #dc3545, #c82333, #dc3545);
+    }
+
+    .dangerbtninstructions {
+      position=absolute;
+      bottom: -0.2em;
+      background: rgba(0,0,0,0);
+      border: 2px solid #dc3545;
+    }
+
+    .dangerbtninstructions:hover {
+      position=absolute;
+      background: rgba(0,0,0,0) !important;
+      border: 2px solid #dc3545;
+      cursor: auto;
     }
 
     .dangerbtn:hover {
@@ -236,7 +278,7 @@
     -ms-appearance: none !important;
     -o-appearance: none !important;
     appearance: none !important;
-    
+
     width: 11px;
     height: 25px;
     color: rgb(255, 255, 255);
@@ -294,6 +336,12 @@
     <div>
         <div class="card text-center">
             <h2 class="card-title mt-2">{{mentor.name}}</h2>
+            <div class="left">
+                <h4>User Guide</h4>
+                <span class="btn btn-sm successbtninstructions">Want: <h5>you would want to work with them as a Lead Mentor</h5></span>
+                <span class="btn btn-sm warningbtninstructions">Willing: <h5>you would be willing to work with them as a Lead Mentor</h5></span>
+                <span class="btn btn-sm dangerbtninstructions">Won't: <h5>you do not want/ won't work with them as a Lead Mentor.</h5></span>
+            </div>
             <div class="row mainrow">
             {% for appointment in appointments %}
                 <div class="col-lg-2">
@@ -314,7 +362,7 @@
                                     <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont')">Won't</button>
                                 </div>
                             {% else %}
-                                <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})"></span></h3>
+                                <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
                                 <div id="appointment{{appointment.id}}">
                                     <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want')">Want</button>
                                     <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing')">Willing</button>
@@ -346,7 +394,7 @@
             </div>
         </div>
     </div>
-    
+
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
