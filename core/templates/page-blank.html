@@ -362,7 +362,7 @@
                                     <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont')">Won't</button>
                                 </div>
                             {% else %}
-                                <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})"></span></h3>
+                                <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
                                 <div id="appointment{{appointment.id}}">
                                     <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want')">Want</button>
                                     <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing')">Willing</button>
