@@ -50,7 +50,7 @@
                 <tr>
                     {% for value in mylist2 %}
                         {% if value.value == 6 %}
-                          <td class="text-center"><span data-toggle="modal" data-target="#staticBackdrop836" class="dot"></span></td>
+                          <td class="text-center"><span data-toggle="modal" data-target="#staticBackdrop{{value.id}}" class="dot"></span></td>
                         {% elif value.value == 3%}
                           <td class="text-center"><span class="dot" style="background-color: #5cb85c;"></span></td>
                         {% elif value.value == 2%}
@@ -90,12 +90,12 @@
                 <h4>The mentor {{appointment.mentor.name}} {{appointment.mentorResponse}} to work with {{appointment.startup.companyName}}</h4>
               </div>
               <div class="row m-2">
-                <p>{{appointment.startup.companyName}} ranked {{appointment.mentor.name}} with {{appointment.startupRanking}} score</p>
-                <p>{{appointment.mentor.name}} ranked {{appointment.startup.companyName}} with {{appointment.mentorRanking}} score</p>
+                <p>{{appointment.startup.companyName}} ranked {{appointment.mentor.name}} with {{appointment.StartupRank}} score</p>
+                <p>{{appointment.mentor.name}} ranked {{appointment.startup.companyName}} with {{appointment.MentorRank }} score</p>
               </div>
               <div class="row m-2">
-                <p>{{appointment.startup.companyName}} leaved the following comments: {{appointment.startupComments}}</p>
-                <p>{{appointment.mentor.name}} leaved the following comments: {{appointment.mentorComments}}</p>
+                <p>{{appointment.startup.companyName}} leaved the following comments: {{appointment.StartupNotes}}</p>
+                <p>{{appointment.mentor.name}} leaved the following comments: {{appointment.MentorNotes}}</p>
               </div>
             </div>
           </div>
