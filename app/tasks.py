@@ -8,22 +8,22 @@ from datetime import date
 def send_email_automation(email, id):
     appointments = Appointment.objects.filter(date=date.today())
     msg_html = render_to_string('htmltemplate.html', {'mentorid': id})
-    msg = EmailMessage(subject="Thank you for mentoring!", body=msg_html, from_email="camilomoralesiml@gmail.com", bcc=[email])
+    msg = EmailMessage(subject="Thank you for mentoring!", body=msg_html, from_email="alba.montana@techstarsassociates.com", bcc=[email])
     msg.content_subtype = "html"  # Main content is now text/html
     return msg.send()
     print('Un email fue enviado')
 
-todayappointments = Appointment.objects.filter(date=date.today())
-emaillist = ['camiloandres.1509', 'ing.heimer.rojas@gmail.com']
-idlist = ['4', '7']
-"""for appointment in todayappointments:
-    emaillist.append(appointment.mentor.email)
-    idlist.append(appointment.mentor.id)"""
+    todayappointments = Appointment.objects.filter(date=date.today())
+    emaillist = ['camiloandres.1509@gmail.com', 'ing.heimer.rojas@gmail.com']
+    idlist = ['4', '7']
+    """for appointment in todayappointments:
+        emaillist.append(appointment.mentor.email)
+        idlist.append(appointment.mentor.id)"""
 
-bcc = set(emaillist)
-mentorids = set(idlist)
+    bcc = set(emaillist)
+    mentorids = set(idlist)
 
 @shared_task
 def send_massive_emails(bcc, mentorids):
     for i in zip(bcc, mentorids):
-        send_email_automation(*i)
+        send_email_automation(*i)   
