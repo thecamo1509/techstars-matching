@@ -374,8 +374,8 @@
                                 <label class="mt-2">Mentor: Helpfulness of Mentor</label>
                                 <label class="mt-2">1 = not helpful 5 = very helpful</label>
                                 <div class="range range-success">
-                                  <input type="range" name="range" min="1" max="5" value="3" onchange="range.value=value; appendresponses({{appointment.id}}, value, 2)">
-                                  <output id="range">3</output>
+                                  <input type="range" name="range{{appointment.id}}" min="1" max="5" value="3" onchange="range{{appointment.id}}.value=value; appendresponses({{appointment.id}}, value, 2)">
+                                  <output id="range{{appointment.id}}">3</output>
                                 </div>
                               </div>
                             </div>
