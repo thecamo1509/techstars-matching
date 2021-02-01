@@ -97,8 +97,13 @@ def updateappointmentstartup(request):
         for appointment in body:
             print(appointment)
             appointmentToUpdate = Appointment.objects.get(id=appointment['id'])
-            appointmentToUpdate.startupResponse = appointment['startup']
-            appointmentToUpdate.status = "completed"
+            k = appointment.keys()
+            if 'startup' in k:
+                appointmentToUpdate.startupResponse = appointment['startup']
+            if 'startupRank' in k:
+                appointmentToUpdate.startupRank= appointment['startupRank']
+            if 'startupNotes' in k:
+                appointmentToUpdate.startupNotes = appointment['startupNotes']
             appointmentToUpdate.save()
     return HttpResponse("ok")
 
@@ -148,7 +153,13 @@ def updateappointmentmentor(request):
         print(body)
         for appointment in body:
             appointmentToUpdate = Appointment.objects.get(id=appointment['id'])
-            appointmentToUpdate.mentorResponse = appointment['mentorresponse']
+            k = appointment.keys()
+            if 'mentorresponse' in k:
+                appointmentToUpdate.mentorResponse = appointment['mentorresponse']
+            if 'mentorRank' in k:
+                appointmentToUpdate.mentorRank= appointment['mentorRank']
+            if 'mentorNotes' in k:
+                appointmentToUpdate.mentorNotes = appointment['mentorNotes']
             appointmentToUpdate.save()
     return HttpResponse("ok")
 

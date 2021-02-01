@@ -37,7 +37,7 @@ class User(AbstractUser):
       (3, 'staff'),
   )
     profile_pic = models.ImageField()
-    user_type = models.PositiveSmallIntegerField(default= 1, choices=USER_TYPE_CHOICES, null=True)
+    user_type = models.PositiveSmallIntegerField(default= 3, choices=USER_TYPE_CHOICES, null=True)
 
 class Startup(models.Model):
     companyName = models.CharField(max_length=200)
@@ -72,6 +72,8 @@ class Appointment(models.Model):
     startupResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
     mentorNotes = models.CharField(max_length=200, blank=True)
     startupNotes = models.CharField(max_length=200, blank=True)
+    mentorRank = models.IntegerField(null=True)  # mentor response
+    startupRank = models.IntegerField(null=True)  # startup response
 
 class LeadMentor(models.Model):
     mentor = models.OneToOneField(Mentor, on_delete=models.CASCADE)
