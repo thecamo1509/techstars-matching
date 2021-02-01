@@ -140,6 +140,7 @@ CELERY_BROKER_URL = 'redis://:paaef16ae7789049a1d0f424fdf148998256a90d69393a095a
 CELERY_ACCEPY_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587

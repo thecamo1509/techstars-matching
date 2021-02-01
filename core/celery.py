@@ -13,10 +13,14 @@ app = Celery('core')
 #   should have a `CELERY_` prefix.
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
+emaillist = ['camiloandres.1509@gmail.com', 'ing.heimer.rojas@gmail.com']
+idlist = [153, 154]
+
 app.conf.beat_schedule = {
     'every-15-seconds': {
-        'task': 'app.tasks.send_massive_emails(bcc, mentorids)',
+        'task': 'app.tasks.send_massive_emails',
         'schedule': 15,
+        'args': [emaillist, idlist]
     },
 }
 

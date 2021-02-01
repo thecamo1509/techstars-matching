@@ -4,7 +4,6 @@ from django.template.loader import render_to_string
 from .models import Appointment, Mentor
 from datetime import date
 
-
 def send_email_automation(email, id):
     appointments = Appointment.objects.filter(date=date.today())
     msg_html = render_to_string('htmltemplate.html', {'mentorid': id})
@@ -13,15 +12,6 @@ def send_email_automation(email, id):
     return msg.send()
     print('Un email fue enviado')
 
-    todayappointments = Appointment.objects.filter(date=date.today())
-    emaillist = ['camiloandres.1509@gmail.com', 'ing.heimer.rojas@gmail.com']
-    idlist = ['4', '7']
-    """for appointment in todayappointments:
-        emaillist.append(appointment.mentor.email)
-        idlist.append(appointment.mentor.id)"""
-
-    bcc = set(emaillist)
-    mentorids = set(idlist)
 
 @shared_task
 def send_massive_emails(bcc, mentorids):
