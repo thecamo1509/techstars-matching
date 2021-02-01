@@ -86,12 +86,24 @@
             </div>
             <div class="modal-body">
               <div class="row m-2">
-                <h4>The company {{appointment.startup.companyName}} {{appointment.startupResponse}} to work with {{appointment.mentor.name}}</h4>
-                <h4>The mentor {{appointment.mentor.name}} {{appointment.mentorResponse}} to work with {{appointment.startup.companyName}}</h4>
+                {% if appointment.startupResponse == 'want' %}
+                <h4>The company {{appointment.startup.companyName}} <strong style="color: #39C463;">{{appointment.startupResponse}}s</strong> to work with {{appointment.mentor.name}}</h4>
+                {% elif appointment.startupResponse == 'willing'%}
+                <h4>The company {{appointment.startup.companyName}} is <strong style="color: #ffc107;">{{appointment.startupResponse}}</strong> to work with {{appointment.mentor.name}}</h4>
+                {% else %}
+                <h4>The company {{appointment.startup.companyName}} <strong style="color: #dc3545;">{{appointment.startupResponse}}</strong> like to work with {{appointment.mentor.name}}</h4>
+                {% endif %}
+                {% if appointment.mentorResponse == 'want' %}
+                <h4>The mentor {{appointment.mentor.name}} <strong style="color: #39C463;">{{appointment.mentorResponse}}s</strong> to work with {{appointment.startup.companyName}}</h4>
+                {% elif appointment.mentorResponse == 'willing' %}
+                <h4>The mentor {{appointment.mentor.name}} is <strong style="color: #ffc107;">{{appointment.mentorResponse}}</strong> to work with {{appointment.startup.companyName}}</h4>
+                {% else %}
+                <h4>The mentor {{appointment.mentor.name}} <strong style="color: #dc3545;">{{appointment.mentorResponse}}</strong> like to work with {{appointment.startup.companyName}}</h4>
+                {% endif %}
               </div>
               <div class="row m-2">
-                <p>{{appointment.startup.companyName}} ranked {{appointment.mentor.name}} with {{appointment.startupRank}} score</p>
-                <p>{{appointment.mentor.name}} ranked {{appointment.startup.companyName}} with {{appointment.mentorRank }} score</p>
+                <p>{{appointment.startup.companyName}} ranked {{appointment.mentor.name}} with <strong style="color: #39C463">{{appointment.startupRank}}</strong> score</p>
+                <p>{{appointment.mentor.name}} ranked {{appointment.startup.companyName}} with <strong style="color: #39C463">{{appointment.mentorRank }}</strong> score</p>
               </div>
               <div class="row m-2">
                 <p>{{appointment.startup.companyName}} leaved the following comments: {{appointment.startupNotes}}</p>
