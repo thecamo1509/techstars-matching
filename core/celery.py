@@ -13,7 +13,7 @@ app = Celery('core')
 #   should have a `CELERY_` prefix.
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
-emaillist = ['camiloandres.1509@gmail.com', 'ing.heimer.rojas@gmail.com']
+emaillist = ['malte.witt@techstars.com', 'camiloandres.1509@gmail.com']
 idlist = [153, 154]
 
 app.conf.beat_schedule = {
