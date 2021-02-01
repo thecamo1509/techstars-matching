@@ -16,3 +16,4 @@ redis
 django-celery-beat
 lxml
 openpyxl
+psycopg2
