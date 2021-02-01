@@ -357,23 +357,23 @@
                             {% if appointment.mentorResponse %}
                                 <h3 style="display: block;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
                                 <div id="appointment{{appointment.id}}" style="display: none">
-                                    <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want')">Want</button>
-                                    <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing')">Willing</button>
-                                    <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont')">Won't</button>
+                                    <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want', 1)">Want</button>
+                                    <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing', 1)">Willing</button>
+                                    <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont', 1)">Won't</button>
                                 </div>
                             {% else %}
                                 <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
                                 <div id="appointment{{appointment.id}}">
-                                    <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want')">Want</button>
-                                    <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing')">Willing</button>
-                                    <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont')">Won't</button>
+                                    <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want', 1)">Want</button>
+                                    <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing', 1)">Willing</button>
+                                    <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont', 1)">Won't</button>
                                 </div>
                             {% endif %}
                             <div class="row">
                               <div class="col">
                                 <label class="mt-2">Slide to rank</label>
                                 <div class="range range-success">
-                                  <input type="range" name="range" min="1" max="5" value="3" onchange="range.value=value">
+                                  <input type="range" name="range" min="1" max="5" value="3" onchange="range.value=value; appendresponses({{appointment.id}}, value, 2)">
                                   <output id="range">3</output>
                                 </div>
                               </div>
@@ -381,7 +381,7 @@
 
                             <div class="form-group" style="margin: 1em;">
                                 <label>Please explain: (optional)</label>
-                                <textarea rows="4" cols="80" class="form-control" placeholder="Type here"></textarea>
+                                <textarea rows="4" cols="80" class="form-control" placeholder="Type here" onchange="appendresponses({{appointment.id}}, value, 3)"></textarea>
                             </div>
                         </div>
                     </div>
@@ -403,19 +403,42 @@
     var responses = []
     var mentorstotal = {{appointments.count}}
 
-    function appendresponses (id, response) {
+    function appendresponses (id, response, question) {
         if(responses.includes(responses.find(object => object.id === id))){
             elementtoupdate = responses.find(object => object.id === id)
-            elementtoupdate.mentorresponse = response
+		if(question == 1){
+	    		elementtoupdate.mentorresponse = response;
+		}
+		if(question == 2){
+            		elementtoupdate.mentorRank = response;
+		}
+		if(question == 3){
+            		elementtoupdate.mentorNotes = response;
+		}
         } else {
-            responses.push(
-            {'id': id, 'mentorresponse': response}
-            )
+		if(question == 1){
+	            responses.push(
+        		    {'id': id, 'mentorresponse': response}
+            		)
+		}
+		if(question == 2){
+	            responses.push(
+        		    {'id': id, 'mentorRank': response}
+            		)
+		}
+		if(question == 3){
+	            responses.push(
+        		    {'id': id, 'mentorNotes': response}
+            		)
+		}
+
         }
+      if(question == 1){
       buttons = document.getElementById("appointment" + id);
       buttons.style.display = 'none';
       selectedresponse = document.getElementById("responsemessage" + id);
       selectedresponse.style.display = 'block';
+      }
       if (responses.length === mentorstotal) {
         mybutton = document.getElementById("submitbutton")
         mybutton.classList.remove("disabled");
