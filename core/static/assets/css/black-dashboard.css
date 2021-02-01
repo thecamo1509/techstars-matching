@@ -5820,13 +5820,13 @@ a.badge-darker.focus {
 }
 
 .alert-primary {
-  color: #e14eca;
-  background-color: #e66ad2;
-  border-color: #e66ad2;
+  color: #fff;
+  background-color: #39C463;
+  border-color: #39C463;
 }
 
 .alert-primary hr {
-  border-top-color: #e254cb;
+  border-top-color: #39C463;
 }
 
 .alert-primary .alert-link {

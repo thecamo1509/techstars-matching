@@ -80,11 +80,11 @@ def uploadfile(request):
         filename = fs.save(myfile.name, myfile)
         mentors = Mentor.objects.all()
         uploaded_file_url = fs.url(filename)
-        print("Recibi el post")
-        loadzip.loadzip(filename)
-        """except:
+        try:
+            loadzip.loadzip(filename)
+        except:
             html_template = loader.get_template('upload_fail.html')
-            return HttpResponse(html_template.render(context, request))"""
+            return HttpResponse(html_template.render(context, request))
         html_template = loader.get_template('upload2.html')
         return HttpResponse(html_template.render(context, request))
     html_template = loader.get_template('upload.html')

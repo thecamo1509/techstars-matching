@@ -52,13 +52,13 @@
                         {% if value.value == 6 %}
                           <td class="text-center"><span data-toggle="modal" data-target="#staticBackdrop{{value.id}}" class="dot"></span></td>
                         {% elif value.value == 3%}
-                          <td class="text-center"><span class="dot" style="background-color: #5cb85c;"></span></td>
+                          <td class="text-center"><span class="dot" data-toggle="modal" data-target="#staticBackdrop{{value.id}}" style="background-color: #5cb85c;"></span></td>
                         {% elif value.value == 2%}
-                          <td class="text-center"><span class="dot" style="background-color: #ffc300;"></span></td>
+                          <td class="text-center"><span class="dot" data-toggle="modal" data-target="#staticBackdrop{{value.id}}" style="background-color: #ffc300;"></span></td>
                         {% elif value.value == 1%}
-                          <td class="text-center"><span class="dot" style="background-color: #ffef5c;"></span></td>
+                          <td class="text-center"><span class="dot" data-toggle="modal" data-target="#staticBackdrop{{value.id}}" style="background-color: #ffef5c;"></span></td>
                         {% elif value.value == 0%}
-                          <td class="text-center"><span class="dot" style="background-color: red;"></span></td>
+                          <td class="text-center"><span class="dot" data-toggle="modal" data-target="#staticBackdrop{{value.id}}" style="background-color: red;"></span></td>
                         {% elif value.value == 'na'%}
                           <td class="text-center"><span data-toggle="modal" data-target="#staticBackdrop{{value.id}}" class="dot" style="background-color: #fff;"></span></td>
                         {% else %}
@@ -90,12 +90,12 @@
                 <h4>The mentor {{appointment.mentor.name}} {{appointment.mentorResponse}} to work with {{appointment.startup.companyName}}</h4>
               </div>
               <div class="row m-2">
-                <p>{{appointment.startup.companyName}} ranked {{appointment.mentor.name}} with {{appointment.StartupRank}} score</p>
-                <p>{{appointment.mentor.name}} ranked {{appointment.startup.companyName}} with {{appointment.MentorRank }} score</p>
+                <p>{{appointment.startup.companyName}} ranked {{appointment.mentor.name}} with {{appointment.startupRank}} score</p>
+                <p>{{appointment.mentor.name}} ranked {{appointment.startup.companyName}} with {{appointment.mentorRank }} score</p>
               </div>
               <div class="row m-2">
-                <p>{{appointment.startup.companyName}} leaved the following comments: {{appointment.StartupNotes}}</p>
-                <p>{{appointment.mentor.name}} leaved the following comments: {{appointment.MentorNotes}}</p>
+                <p>{{appointment.startup.companyName}} leaved the following comments: {{appointment.startupNotes}}</p>
+                <p>{{appointment.mentor.name}} leaved the following comments: {{appointment.mentorNotes}}</p>
               </div>
             </div>
           </div>
