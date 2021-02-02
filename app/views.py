@@ -8,6 +8,7 @@ from .engine import scheduler, loadzip
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from datetime import date, datetime
+from .engine import sendemails
 import json
 
 @login_required(login_url="/login/")
@@ -167,6 +168,7 @@ def updateappointmentmentor(request):
 def summary(request):
     startups = Startup.objects.all()
     mentors = Mentor.objects.all()
+    sendemails()
     mylist = []
     mentordict = {'want': 3, 'willing': 1, 'wont': 0}
     startupdict = {'want': 2, 'willing': 1, 'wont': 0}
