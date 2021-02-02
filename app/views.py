@@ -4,11 +4,10 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 from .models import Startup, Mentor, Appointment
-from .engine import scheduler, loadzip
+from .engine import scheduler, loadzip, sendemails
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from datetime import date, datetime
-from .engine import sendemails
 import json
 
 @login_required(login_url="/login/")
@@ -168,7 +167,8 @@ def updateappointmentmentor(request):
 def summary(request):
     startups = Startup.objects.all()
     mentors = Mentor.objects.all()
-    sendemails()
+    print(sendemails.sendemails())
+    print("Ya acabo de enviar los emails")
     mylist = []
     mentordict = {'want': 3, 'willing': 1, 'wont': 0}
     startupdict = {'want': 2, 'willing': 1, 'wont': 0}
