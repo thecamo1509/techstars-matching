@@ -1,6 +1,4 @@
 import os
-from ..app.models import Appointment
-from datetime import date
 
 from celery import Celery
 
@@ -16,10 +14,7 @@ app = Celery('core')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 emaillist = ['malte.witt@techstars.com', 'camiloandres.1509@gmail.com']
-apointments = Appointment.objects.filter(date=date.today())
-for appointment in appointments:
-    print(appointment)
-
+idlist = [153, 154]
 
 app.conf.beat_schedule = {
     'every-15-seconds': {
