@@ -69,8 +69,8 @@ class Appointment(models.Model):
     status = models.CharField(max_length=50, choices=STATUSES)
     mentorResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
     startupResponse = models.CharField(max_length=200, choices=RESPONSES, blank=True)
-    mentorNotes = models.CharField(max_length=200, blank=True)
-    startupNotes = models.CharField(max_length=200, blank=True)
+    mentorNotes = models.CharField(max_length=10000, blank=True)
+    startupNotes = models.CharField(max_length=10000, blank=True)
     mentorRank = models.IntegerField(blank=True, null=True)  # mentor response
     startupRank = models.IntegerField(blank=True, null=True)  # startup response
 

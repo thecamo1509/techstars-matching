@@ -1,4 +1,5 @@
 import os
+from ..app.models import Appointment
 
 from celery import Celery
 
@@ -14,12 +15,12 @@ app = Celery('core')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 emaillist = ['malte.witt@techstars.com', 'camiloandres.1509@gmail.com']
-idlist = [153, 154]
+finalemaillist = 
 
 app.conf.beat_schedule = {
     'every-15-seconds': {
         'task': 'app.tasks.send_massive_emails',
-        'schedule': 15,
+        'schedule': 30,
         'args': [emaillist, idlist]
     },
 }
