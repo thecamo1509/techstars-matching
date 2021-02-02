@@ -10,7 +10,6 @@ def send_email_automation(email, id):
     msg = EmailMessage(subject="Thank you for mentoring!", body=msg_html, from_email="alba.montana@techstarsassociates.com", bcc=[email])
     msg.content_subtype = "html"  # Main content is now text/html
     return msg.send()
-    print('Un email fue enviado')
 
 
 @shared_task
