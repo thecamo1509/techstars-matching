@@ -6,9 +6,14 @@ from datetime import date
 
 def send_email_automation(email, id):
     appointments = Appointment.objects.filter(date=date.today())
-    msg_html = render_to_string('htmltemplate.html', {'mentorid': id})
-    msg = EmailMessage(subject="Thank you for mentoring!", body=msg_html, from_email="alba.montana@techstarsassociates.com", bcc=[email])
-    msg.content_subtype = "html"  # Main content is now text/html
+    mentor = Mentor.objects.get(id=id)
+    mentorname = mentor.name
+    message = """
+    Hi {}
+
+    Thank you for sharing your time with the companies today. When you get a chance, please select the companies you want to mentor, will not mentor, or are willing to mentor here: https://techstars-matchmaking.herokuapp.com/mentors/{}
+    """.format(mentorname, id)
+    msg = EmailMessage(subject="[Action Required] Which companies do you want to mentor?", body=message, from_email="alba.montana@techstarsassociates.com", bcc=[email])
     return msg.send()
 
 

@@ -8,6 +8,8 @@ from .engine import scheduler, loadzip, sendemails
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage
 from datetime import date, datetime
+import numpy
+from collections import Counter
 import json
 
 @login_required(login_url="/login/")
@@ -168,12 +170,13 @@ def summary(request):
     startups = Startup.objects.all()
     mentors = Mentor.objects.all()
     print(sendemails.sendemails())
-    print("Ya acabo de enviar los emails")
     mylist = []
+    finallist = []
     mentordict = {'want': 3, 'willing': 1, 'wont': 0}
     startupdict = {'want': 2, 'willing': 1, 'wont': 0}
     for mentor in mentors:
         mylist2 = [mentor]
+        matchlist = []
         for startup in startups:
             try:
                 appointment = Appointment.objects.get(startup=startup, mentor=mentor)
@@ -181,14 +184,25 @@ def summary(request):
             except:
                 value = {'id': 'na','value': "na"}
             mylist2.append(value)
+            if value['value'] == "na":
+                matchlist.append(-1)
+            else:
+                matchlist.append(value['value'])
         mylist.append(mylist2)
+        finallist.append(matchlist)
 
+    transposed = numpy.transpose(finallist).tolist()
+    counters = []
+    for element in transposed:
+        counters.append(dict(Counter(element)))
     appointments = Appointment.objects.all()
+    data = list(zip(startups, counters))
     context = {
         'startups': startups,
         'mentors': mentors,
         'mylist': mylist,
         'appointments': appointments,
+        'data': data,
     }
     return render(request, "summary.html", context=context)
 

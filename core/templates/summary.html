@@ -38,9 +38,11 @@
                 <th class="text-center">
                   Mentor
                 </th>
-                {% for startup in startups %}
+                {% for startup, score in data %}
                     <th class="text-center">
-                    <a href="/startup/{{startup.id}}/" target="blank">{{startup.companyName}}</a>
+                      <a href="/startup/{{startup.id}}/" target="blank">{{startup.companyName}}</a>
+                      <span style="display: inline-block; text-transform: none;">Want/Want: {{score.6}}</span>
+                      <span style="text-transform: none;">Want/Willing: {{score.2}}</span>
                     </th>
                 {% endfor %}
               </tr>
