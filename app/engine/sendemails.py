@@ -6,11 +6,11 @@ def sendemails():
     appointments = Appointment.objects.filter(date=date.today(),)
     objectslist = []
     """for appointment in appointments:
-        if appointment.mentor.timeSlot == 'PM':
+        if appointment.mentor.timeSlot == 'AM':
             myobject = {'id': appointment.mentor.id, 'email': appointment.mentor.email}
             if myobject not in objectslist:
                 objectslist.append(myobject)"""
-    objectslist.append({'id': 1, 'email': 'ing.heimer.rojas@gmail.com'})
+    """objectslist.append({'id': 1, 'email': 'ing.heimer.rojas@gmail.com'})"""
     objectslist.append({'id': 2, 'email': 'camiloandres.1509@gmail.com'})
     
     """for objects in objectslist:
