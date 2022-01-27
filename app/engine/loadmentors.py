@@ -44,7 +44,7 @@ def loaddata(filename):
 
     com = Startup.objects.all()
     for i, m in enumerate(mentors):
-        list_startups = source.iloc[i, 5:13]
+        list_startups = source.iloc[i, 5:17]
         st = []
         for s in list_startups:
             startups = Startup.objects.filter(companyName=s)

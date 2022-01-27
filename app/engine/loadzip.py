@@ -116,7 +116,7 @@ def loaddata(source):
 
     com = Startup.objects.all()
     for i, m in enumerate(mentors):
-        list_startups = source.iloc[i, 5:13]
+        list_startups = source.iloc[i, 5:17]
         st = []
         for s in list_startups:
             startups = Startup.objects.filter(companyName=s)
@@ -131,8 +131,8 @@ def loaddata(source):
             timeslot = source.iloc[i, 4].split(" - ")[1]
         if type(source.iloc[i, 2]) == str:
             email = source.iloc[i, 2]
-        if type(source.iloc[i, 13]) == str:
-            pic = source.iloc[i, 13]
+        if type(source.iloc[i, 17]) == str:
+            pic = source.iloc[i, 17]
         obj, _ = Mentor.objects.update_or_create(name=m,
                                                  defaults={'name': m,
                                                            'email': email,

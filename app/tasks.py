@@ -11,7 +11,10 @@ def send_email_automation(email, id):
     message = """
     Hi {}
 
-    Thank you for sharing your time with the companies today. When you get a chance, please select the companies you want to mentor, will not mentor, or are willing to mentor here: https://techstars-matchmaking.herokuapp.com/mentors/{}
+    Thank you for sharing your time with the companies today. When you get a chance, please select the companies you want to mentor, will not mentor, or are willing to mentor via this very short form https://techstars-matchmaking.herokuapp.com/mentors/{}
+    
+    With appreciation,
+    Malte, Alba and Andres
     """.format(mentorname, id)
     msg = EmailMessage(subject="[Action Required] Which companies do you want to mentor?", body=message, from_email="alba.montana@techstarsassociates.com", bcc=[email])
     return msg.send()
