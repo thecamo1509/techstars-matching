@@ -169,7 +169,6 @@ def updateappointmentmentor(request):
 def summary(request):
     startups = Startup.objects.all()
     mentors = Mentor.objects.all()
-    print(sendemails.sendemails())
     mylist = []
     finallist = []
     mentordict = {'want': 3, 'willing': 1, 'wont': 0}
