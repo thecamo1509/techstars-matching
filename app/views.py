@@ -167,6 +167,9 @@ def updateappointmentmentor(request):
 
 @login_required(login_url="/login/")
 def summary(request):
+
+    if request.method == 'POST':
+        scheduler.automaticBooking()
     startups = Startup.objects.all()
     mentors = Mentor.objects.all()
     mylist = []
@@ -179,7 +182,9 @@ def summary(request):
         for startup in startups:
             try:
                 appointment = Appointment.objects.get(startup=startup, mentor=mentor)
+                print("ESTE ES EL APPOINTMENT", appointment)
                 value = {'id': appointment.id, 'value':mentordict[appointment.mentorResponse] * startupdict[appointment.startupResponse]}
+                print("Hay una appointment")
             except:
                 value = {'id': 'na','value': "na"}
             mylist2.append(value)
@@ -196,6 +201,7 @@ def summary(request):
         counters.append(dict(Counter(element)))
     appointments = Appointment.objects.all()
     data = list(zip(startups, counters))
+    print(mylist)
     context = {
         'startups': startups,
         'mentors': mentors,

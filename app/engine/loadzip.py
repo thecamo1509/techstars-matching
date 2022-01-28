@@ -35,11 +35,6 @@ def loadzip(filename):
     source = pd.read_html('data/Source Data.html', header=1, index_col=0)[0]
     loaddata(source)
     # create appointments
-    for company in Startup.objects.all():
-        c_name = company.companyName
-        appointment = pd.read_html('data/'+c_name+'.html',
-                                   header=2, index_col=0)[0]
-        load_appointment(appointment, c_name)
 
     cleaner()
 
@@ -48,15 +43,13 @@ def load_appointment(data_ap, c_name):
     """
     create an appointment in database
     """
+    print("ESTO ES ==> ", data_ap)
     data_ap = data_ap.drop(['Unnamed: 2'], axis=1, errors='ignore')
-    dates = ['2021-02-01',
-             '2021-02-02',
-             '2021-02-03',
-             '2021-02-04',
-             '2021-02-05']
-
-    mentors = Mentor.objects.all()
-    data_ap
+    dates = ['2022-01-31',
+             '2022-02-01',
+             '2022-02-02',
+             '2022-02-03',
+             '2022-02-04']
     for i, date in enumerate(dates):
         mentors_day = data_ap.iloc[:, i+1]
         for j, m_d in enumerate(mentors_day):
@@ -76,12 +69,12 @@ def load_appointment(data_ap, c_name):
                 end = time_all[3]
                 startup = Startup.objects.get(companyName=c_name)
                 Appointment.objects.update_or_create(
-                                                     mentor=mentor,
-                                                     startup=startup,
-                                                     defaults={'date': date,
-                                                               'time': time,
-                                                               'status': 'pending',
-                                                               'endtime': end})
+                mentor=mentor,
+                startup=startup,
+                defaults={'date': date,
+                        'time': time,
+                        'status': 'pending',
+                        'endtime': end})
 
 
 def convertPM(hour):
@@ -134,11 +127,11 @@ def loaddata(source):
         if type(source.iloc[i, 17]) == str:
             pic = source.iloc[i, 17]
         obj, _ = Mentor.objects.update_or_create(name=m,
-                                                 defaults={'name': m,
-                                                           'email': email,
-                                                           'day': day.lower(),
-                                                           'timeSlot': timeslot,
-                                                           'mentorPic': pic,
-                                                           })
+                defaults={'name': m,
+                        'email': email,
+                        'day': day.lower(),
+                        'timeSlot': timeslot,
+                        'mentorPic': pic,
+                        })
         obj.startup.add(*st)
         obj.save()

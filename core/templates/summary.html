@@ -18,6 +18,10 @@
 
 <div class="row">
   <div class="col-md-12">
+    <form action="" method="post" class="form-example">
+      {% csrf_token %}
+      <input type="submit">Generate Appointments</input>
+    </form>
     <div class="card ">
       <div class="card-header">
         <h4 class="card-title">Matches Summary</h4>
@@ -62,7 +66,7 @@
                         {% elif value.value == 0%}
                           <td class="text-center"><span class="dot" data-toggle="modal" data-target="#staticBackdrop{{value.id}}" style="background-color: red;"></span></td>
                         {% elif value.value == 'na'%}
-                          <td class="text-center"><span data-toggle="modal" data-target="#staticBackdrop{{value.id}}" class="dot" style="background-color: #fff;"></span></td>
+                          <td class="text-center"><span data-toggle="modal" data-target="#staticBackdrop{{value.id}}" class="dot" style="visibility: hidden;"></span></td>
                         {% else %}
                           <td class="text-center"><a href="mentors/{{value.id}}/" target="blank">{{value}}</a></td>
                         {% endif %}

@@ -58,6 +58,7 @@ NEXT_DATES = {
 def automaticBooking():
     for daycode, day in WEEKDAYS.items():
         mentorslistmorning = Mentor.objects.filter(day=day, timeSlot='AM')
+        print(mentorslistmorning)
         mentorslistafternoon = Mentor.objects.filter(day=day, timeSlot='PM')
         if mentorslistmorning.count() != 0:
             automatedSchedulerMorning(mentorslistmorning, NEXT_DATES[daycode])
@@ -84,7 +85,7 @@ def automatedSchedulerMorning(mentors, date):
                     if appointmentsstartup.count() == 0:
                         appointmentfilter = Appointment.objects.filter(mentor=mentor, startup=startup, date=currentdate)
                         if appointmentfilter.count() == 0:
-                            newappointment = Appointment(mentor=mentor, startup=startup, date=currentdate, time=newtime, meet="https://meet.google.com/iki-zduu-fnj", status="Pending")
+                            newappointment = Appointment(mentor=mentor, startup=startup, date=currentdate, time=newtime, endtime=newtime,  status="Pending")
                             newappointment.save()
                             mytimeslot.remove(timeslot)
                             break
@@ -104,7 +105,7 @@ def automatedSchedulerAfternoon(mentors, date):
                     if appointmentsstartup.count() == 0:
                         appointmentfilter = Appointment.objects.filter(mentor=mentor, startup=startup, date=currentdate)
                         if appointmentfilter.count() == 0:
-                            newappointment = Appointment(mentor=mentor, startup=startup, date=currentdate, time=newtime, meet="https://meet.google.com/iki-zduu-fnj", status="Pending")
+                            newappointment = Appointment(mentor=mentor, startup=startup, date=currentdate, time=newtime,endtime=newtime, status="Pending")
                             newappointment.save()
                             mytimeslot.remove(timeslot)
                             break
