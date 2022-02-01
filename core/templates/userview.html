@@ -356,33 +356,55 @@
                             <h3>{{appointment.mentor.name}}</h3>
                             {% if appointment.startupResponse %}
                                 <h3 style="display: block;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
+                                {% if appointment.startupResponse == 'want' %}
+                                  <h5 style="display: block;" id="summaryreponses{{appointment.id}}">You <strong style="color: #39C463">want</strong> to work with this company as LeadMentor</h5>
+                                {% elif appointment.startupResponse == 'willing'%}
+                                  <h5 style="display: block;" id="summaryreponses{{appointment.id}}">You are <strong style="color: #ffc107">willing</strong> to work with this company as LeadMentor</h5>
+                                {% else %}
+                                  <h5 style="display: block;" id="summaryreponses{{appointment.id}}">You <strong style="color: #dc3545">don't</strong> want to work with this company as LeadMentor</h5>
+                              {% endif %}
+                                <h5 style="display: block;" id="rankedresponses{{appointment.id}}">You have ranked this mentor with a <strong>{{appointment.startupRank}}</strong> score</h5>
                                 <div id="appointment{{appointment.id}}" style="display: none">
                                     <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want', 1)">Want</button>
                                     <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing', 1)">Willing</button>
                                     <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont', 1)">Won't</button>
                                 </div>
+                                <div class="row" id="rankedslyder{{appointment.id}}" style="display:none;">
+                                  <div class="col">
+                                    <label class="mt-2">Mentor: Helpfulness of Mentor</label>
+                                    <label class="mt-2">1 = not helpful 5 = very helpful</label>
+                                    <div class="range range-success">
+                                      <input type="range" name="range{{appointment.id}}" min="1" max="5" value="3" onchange="range{{appointment.id}}.value=value; appendresponses({{appointment.id}}, value, 2)">
+                                      <output id="range{{appointment.id}}">3</output>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group" style="margin: 1em;">
+                                  <label>Please explain: (optional)</label>
+                                  <textarea rows="4" cols="80" class="form-control disable" readonly placeholder="You didn't add any notes" id="startupnotes{{appointment.id}}" onchange="appendresponses({{appointment.id}}, value, 3)">{{appointment.startupNotes}}</textarea>
+                                </div>
                             {% else %}
-                                <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
+                                <h3 style="display: none;" id="responsemessage{{appointment.id}}"><p><b>Thank you for your response please click submit to save your changes</b></p><span class="btn btn-sm undo" onclick="undoresponse({{appointment.id}})">Undo</span></h3>
                                 <div id="appointment{{appointment.id}}">
                                     <button class="btn btn-sm successbtn" onClick="appendresponses({{appointment.id}}, 'want', 1)">Want</button>
                                     <button class="btn btn-sm warningbtn" onClick="appendresponses({{appointment.id}}, 'willing', 1)">Willing</button>
                                     <button class="btn btn-sm dangerbtn" onClick="appendresponses({{appointment.id}}, 'wont', 1)">Won't</button>
                                 </div>
-                            {% endif %}
-                            <div class="row">
-                              <div class="col">
-                                <label class="mt-2">Mentor: Helpfulness of Mentor</label>
-                                <label class="mt-2">1 = not helpful 5 = very helpful</label>
-                                <div class="range range-success">
-                                  <input type="range" name="range{{appointment.id}}" min="1" max="5" value="3" onchange="range{{appointment.id}}.value=value; appendresponses({{appointment.id}}, value, 2)">
-                                  <output id="range{{appointment.id}}">3</output>
+                                <div class="row">
+                                  <div class="col">
+                                    <label class="mt-2">Mentor: Helpfulness of Mentor</label>
+                                    <label class="mt-2">1 = not helpful 5 = very helpful</label>
+                                    <div class="range range-success">
+                                      <input type="range" name="range{{appointment.id}}" min="1" max="5" value="3" onchange="range{{appointment.id}}.value=value; appendresponses({{appointment.id}}, value, 2)">
+                                      <output id="range{{appointment.id}}">3</output>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div class="form-group" style="margin: 1em;">
-                                <label>Please explain: (optional)</label>
-                                <textarea rows="4" cols="80" class="form-control" placeholder="Type here" id="txt" onchange="appendresponses({{appointment.id}}, value, 3)"></textarea>
-                            </div>
+                                <div class="form-group" style="margin: 1em;">
+                                  <label>Please explain: (optional)</label>
+                                  <textarea rows="4" cols="80" class="form-control" placeholder="Type here" id="txt" onchange="appendresponses({{appointment.id}}, value, 3)"></textarea>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -455,7 +477,6 @@
 
     function undoresponse(id) {
         myid = id;
-        console.log(responses)
         var objecttoupdate = {}
         if(responses.length !== 0){
             if(responses.includes(responses.find(object => object.id === id))){
@@ -471,8 +492,19 @@
         }
         buttons = document.getElementById("appointment" + id);
         buttons.style.display = 'block'
+        responsemessage = document.getElementById("responsemessage" + id)
+        responsemessage.style.display = "none"
+        summaryreponses = document.getElementById("summaryreponses" + id)
+        rankedresponses = document.getElementById("rankedresponses" + id)
         selectedresponse = document.getElementById("responsemessage" + id);
-        selectedresponse.style.display = 'none'
+        startupnotes = document.getElementById("startupnotes" + id )
+        startupnotes.removeAttribute("readonly")
+        startupnotes.placeholder = "Type here"
+        rankedslyder = document.getElementById("rankedslyder" + id)
+        summaryreponses.style.display = "none"
+        rankedresponses.style.display = "none"
+        selectedresponse.style.display = "none"
+        rankedslyder.style.display = "block"
         console.log(responses)
     }
 
